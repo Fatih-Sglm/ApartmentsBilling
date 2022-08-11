@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.4.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="FluentValidation" Version="11.1.0" />
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.17" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\ApartmentsBilling.Common\ApartmentsBilling.Common.csproj" />
+    <ProjectReference Include="..\..\..\Projections\ApartmentsBilling.BacGroundJobs\ApartmentsBilling.BackGroundJobs.csproj" />
+    <ProjectReference Include="..\..\..\Projections\ApartmentsBilling.Cache\ApartmentsBilling.Cache.csproj" />
+    <ProjectReference Include="..\..\Core\ApartmentsBilling.DataAccesLayer\ApartmentsBilling.DataAccesLayer.csproj" />
+  </ItemGroup>
+
+</Project>

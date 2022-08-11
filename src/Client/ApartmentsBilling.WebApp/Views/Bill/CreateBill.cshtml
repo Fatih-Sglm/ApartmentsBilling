@@ -1,0 +1,53 @@
+﻿@model ApartmentsBilling.WebApp.Models.CreateBillVm
+
+@{
+    ViewData["Title"] = "CreateBill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>CreateBill</h1>
+
+<h4>CreateBillVm</h4>
+<hr />
+<div class="col-sm-12 col-xl-6">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Floating Label</h6>
+        <div class="form-floating mb-3">
+            <input type="hidden" class="form-control" id="floatingInput">
+        </div>
+        <div class="form-floating mb-3">
+            @for (int i = 0; i < ViewBag.Count; i++)
+            {
+                <div id="opts">
+                    <input asp-for="Dto[i].ApartmentId" value="90ea6842-4aef-437a-8cba-e19b5f426345" hidden />
+                    <select asp-for="Dto[i].BilltypeId" class="form-control" id="selectBill" title="Choose one of the following...">
+                        @foreach (var item in ViewBag.data)
+                        {
+                            <option id="options" value="@item.Id" class="form-control">@item.Name</option>
+                        }
+                    </select>
+                    <input asp-for="Dto[i].TotalPrice" />
+                </div>
+            }
+            <label for="floatingSelect">Fatura Tipi</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingPassword">
+            <label for="floatingPassword">Fatuta Tutarı</label>
+        </div>
+        <div class="form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 150px;"></textarea>
+            <label for="floatingTextarea">Comments</label>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+    </script>
+    }
+
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+

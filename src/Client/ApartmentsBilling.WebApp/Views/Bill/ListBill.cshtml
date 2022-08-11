@@ -1,0 +1,63 @@
+﻿@model IEnumerable<BillDto>
+
+@{
+    ViewData["Title"] = "ListBill";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Faturalar</h1>
+
+<div class="col-12">
+    <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Responsive Table</h6>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Fatura Sahibi</th>
+                        <th scope="col">Fatura Tipi</th>
+                        <th scope="col">Daire Numarası</th>
+                        <th scope="col">Ödenme Bilgisi</th>
+                        <th scope="col">Ödeme için Kalan Süre</th>
+                        <th scope="col">Fatura Tutarı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var i = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <th scope="row">@i</th>
+                            <td id="@i">@item.BillOwner</td>
+                            <td>@item.BillType</td>
+                            <td>@item.FloorNumber</td>
+                            @if (@item.IsPayment == true)
+                            {
+                                <td>Ödendi</td>
+                            }
+                            else
+                            {
+                                <td>Ödenmedi</td>
+                            }
+                            @{
+                                var lastDays = (@item.LastPaymentDate - @DateTime.Now).ToString(@"dd\.hh\:mm");
+                            }
+                            <td>@lastDays</td>
+                            <td>@item.Price</td>
+                            <th>
+                                <span class="btn bg-cyan waves-effect"><a href="/Blog/Blogdetail/@item.Id" title="Detayı Gör"> <i class="material-icons"> folder</i></a> </span>
+                                <a class="btn bg-purple waves-effect" href="/Bill/Update/@item.Id" title="Güncelle">  <i class="material-icons">update</i></a>
+                                <a class="btn bg-red waves-effect" href="" title="Sil">Delete</a>
+                            </th>
+                        </tr>
+                        i += 1;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

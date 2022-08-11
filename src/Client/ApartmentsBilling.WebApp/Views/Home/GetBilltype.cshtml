@@ -1,0 +1,15 @@
+﻿@model CreateBillDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form>
+    <select asp-for="BilltypeId" class="form-control" title="Choose one of the following...">
+            @foreach (var item in ViewBag.data)
+            {
+                <option value="@item.Id" class="form-control">@item.Name</option>
+            }
+        </select>
+</form>
