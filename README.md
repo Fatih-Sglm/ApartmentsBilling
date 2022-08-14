@@ -17,6 +17,10 @@ Allta Örnek olarak verildiği Gibi
 Sonradan Şifrenizi değiştirebilirsiniz
 
 Sisteme kayıt olduktan sonra Kullanıcı eklemeden Daire eklemelisiniz.İsterseniz sizin dışında başka yönetici de ekleyebilirsiniz
+
+
+
+
 Fatura eklemeden Önce Sİsteme Fatura tipi eklemelisiniz Örnek olarak Doğal gaz verilebilir.Fatura ekleme kısmında girilen Fatura tipi ile beraber
 bir apartman Id si de çekilir ve girilen tutar apartmana bağlı dairelere eşit olarak bölünür.Daire Başına Fatura oluşturulur.
 
