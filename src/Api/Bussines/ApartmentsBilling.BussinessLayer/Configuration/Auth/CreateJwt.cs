@@ -28,7 +28,7 @@ namespace ApartmentsBilling.BussinessLayer.Configuration.Auth
                 issuer: tokenOptions.Issuer,
                 audience: tokenOptions.Audience,
                 claims: claims,
-                expires: DateTime.Now.AddDays(tokenOptions.AccessTokenExpiration),
+                expires: DateTime.Now.AddMinutes(tokenOptions.AccessTokenExpiration),
                 signingCredentials: new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature)
             );
 
