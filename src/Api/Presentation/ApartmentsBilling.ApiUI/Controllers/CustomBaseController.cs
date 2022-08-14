@@ -12,8 +12,8 @@ namespace ApartmentsBilling.ApiUI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [LogFilter]
-    //[Authorize]
-    [AllowAnonymous]
+    [Authorize]
+    //[AllowAnonymous]
     public class CustomBaseController : ControllerBase
     {
         protected const string admin = "Admin";

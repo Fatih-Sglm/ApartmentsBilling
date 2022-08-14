@@ -24,7 +24,7 @@ namespace ApartmentsBilling.ApiUI.Controllers
             _mapper = mapper;
         }
         [HttpPost]
-        //[Permission(UserRole.Admin)]
+        [Permission(UserRole.Admin)]
         public async Task<IActionResult> CreateAsync(CreateUserDto userdto)
         {
             await _userService.AddUserAsync(userdto, false);
@@ -56,7 +56,7 @@ namespace ApartmentsBilling.ApiUI.Controllers
         }
 
         [HttpGet("{id}")]
-        //[Permission(UserRole.Admin)]
+        [Permission(UserRole.Admin)]
         public async Task<IActionResult> GetSingleAsync(Guid id)
         {
             var user = await _userService.GetSingleAsync(x => x.Id == id, true);

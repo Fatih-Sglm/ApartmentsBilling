@@ -52,7 +52,6 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                         var value = await _flatRepo.GetSingleAsync(x => x.Id == userDto.FlatId, true);
                         value.IsEmpty = false;
                         _flatRepo.Update(value);
-                        await _flatRepo.SaveChangeAsync();
                     }
                     _jobs.FireAndForget(user.Email, pass);
                     await _userRepo.SaveChangeAsync();

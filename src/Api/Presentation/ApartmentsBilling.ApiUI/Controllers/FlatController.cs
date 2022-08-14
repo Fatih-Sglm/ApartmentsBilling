@@ -1,7 +1,8 @@
-﻿using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
+﻿using ApartmentsBilling.BussinessLayer.Configuration.Filter.FilterAttirbute;
+using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
 using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.Common.Dtos.FlatDto;
-using AutoMapper;
+using ApartmentsBilling.Entity.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,18 +10,14 @@ using System.Threading.Tasks;
 
 namespace ApartmentsBilling.ApiUI.Controllers
 {
-    //[Permission(UserRole.Admin)]
+    [Permission(UserRole.Admin)]
     public class FlatController : CustomBaseController
     {
         private readonly IFlatService _flatService;
-        private readonly IApartmentService _apartmentService;
-        private readonly IMapper _mapper;
 
-        public FlatController(IFlatService flatService, IMapper mapper, IApartmentService apartmentService)
+        public FlatController(IFlatService flatService)
         {
             _flatService = flatService;
-            _mapper = mapper;
-            _apartmentService = apartmentService;
         }
 
         [HttpPost]
@@ -43,19 +40,20 @@ namespace ApartmentsBilling.ApiUI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetListAsync()
         {
-            var flats = await _flatService.GetListWithInclude(null);
+            var flats = await _flatService.GetListWithInclude(null, true, false);
             return CreatActionResult(CustomResponseDto<List<GetFlatDto>>.SuccesWithData(flats));
         }
 
-        //[HttpGet("Edit")]
-        //public async Task<IActionResult> GetListForEditAsync()
-        //{
-        //    return CreatActionResult(CustomResponseDto<List<GetFlatDto>>.SuccesWithData(_mapper.Map<List<GetFlatDto>>(await _flatService.GetListWithInclude(null, tracking: false, orderBy: x => x.OrderByDescending(x => x.CreatedDate), includes: x => x.User))));
-        //}
+        [HttpGet("Edit")]
+        public async Task<IActionResult> GetListForEditAsync()
+        {
+            var flats = await _flatService.GetListWithInclude(null, false, false);
+            return CreatActionResult(CustomResponseDto<List<GetFlatDto>>.SuccesWithData(flats));
+        }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSingleAsync(Guid id)
         {
-            var flat = await _flatService.GetSingleAsync(x => x.Id == id);
+            var flat = await _flatService.GetSingleAsync(x => x.Id == id, true, false);
             return CreatActionResult(CustomResponseDto<GetFlatDto>.SuccesWithData(flat));
         }
 

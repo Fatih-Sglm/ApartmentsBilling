@@ -32,9 +32,9 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 await _billTypeRepository.SaveChangeAsync();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Fatura Tipi " + CustomErrorMessage.InsertErrorMessage);
+                throw new Exception("Fatura Tipi " + CustomErrorMessage.InsertErrorMessage + "\n" + ex.Message);
             }
         }
         public async Task<bool> AddRangeAsync(List<CreateBillTypeDto> createBillTypeDtos)

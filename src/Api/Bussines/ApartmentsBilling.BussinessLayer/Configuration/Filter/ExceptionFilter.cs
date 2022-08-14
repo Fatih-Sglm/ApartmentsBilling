@@ -12,6 +12,21 @@ namespace ApartmentsBilling.BussinessLayer.Configuration.Filter
     {
         public override void OnException(ExceptionContext context)
         {
+            var logger = context.HttpContext.RequestServices.GetService<MssqlLog>();
+            var response = context.Exception.Message;
+            var errors = JsonSerializer.Serialize(CustomResponseDto<NoContent>.Fail(response));
+            var ExeptionResult = context.Exception switch
+            {
+                ClientSideException => new BadRequestObjectResult(errors),
+                NotFoundException => new NotFoundObjectResult(errors),
+                _ => context.Result = new StatusCodeObjectResult(500, errors),
+            };
+            if (context.Exception.GetType() != typeof(ClientSideException))
+                logger._logger.Error(new JsonResult(new { error = context.Exception.Message, context.Exception.InnerException, }).Value.ToString());
+            context.Result = ExeptionResult;
+            //context.Result = new ObjectResult(JsonSerializer.Serialize(error));
+            base.OnException(context);
+
             //var logger = context.HttpContext.RequestServices.GetService<MssqlLog>();
             //var response = context.Exception.Message;
             //var error = new ErrorDto()
@@ -36,21 +51,6 @@ namespace ApartmentsBilling.BussinessLayer.Configuration.Filter
 
 
             //};
-
-            var logger = context.HttpContext.RequestServices.GetService<MssqlLog>();
-            var response = context.Exception.Message;
-            var errors = JsonSerializer.Serialize(CustomResponseDto<NoContent>.Fail(response));
-            var ExeptionResult = context.Exception switch
-            {
-                ClientSideException => new BadRequestObjectResult(errors),
-                NotFoundException => new NotFoundObjectResult(errors),
-                _ => context.Result = new StatusCodeObjectResult(500, errors),
-            };
-            if (context.Exception.GetType() != typeof(ClientSideException))
-                logger._logger.Error(new JsonResult(new { error = context.Exception.Message, context.Exception.InnerException, }).Value.ToString());
-            context.Result = ExeptionResult;
-            //context.Result = new ObjectResult(JsonSerializer.Serialize(error));
-            base.OnException(context);
         }
     }
 }

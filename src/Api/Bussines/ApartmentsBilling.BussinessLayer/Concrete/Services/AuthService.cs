@@ -103,12 +103,14 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Services
                     IdNumber = createAdminDto.IdNumber,
                     Role = UserRole.Admin,
                 };
+                await _ApartmentRepo.SaveChangeAsync();
+                await _FlatRepo.SaveChangeAsync();
                 await _UserService.AddUserAsync(_mapper.Map<CreateUserDto>(user), true);
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Kayıt Yapılırken bir hata Oluştu lütfen tekrar deneyiniz");
+                throw new Exception("Kayıt Yapılırken bir hata Oluştu lütfen tekrar deneyiniz" + ex.Message);
             }
         }
     }

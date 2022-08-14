@@ -21,7 +21,7 @@ namespace ApartmentsBilling.ApiUI.Controllers
         }
 
         [HttpPost]
-        //[Permission(UserRole.Admin)]
+        [Permission(UserRole.Admin)]
         public async Task<IActionResult> CreateAsync(List<CreateBillDto> createBillDtos)
         {
             var value = await _billService.AddRangeAsync(createBillDtos);
@@ -31,7 +31,7 @@ namespace ApartmentsBilling.ApiUI.Controllers
         }
 
         [HttpPut]
-        //[Permission(UserRole.Admin)]
+        [Permission(UserRole.Admin)]
         public async Task<IActionResult> UpdateAsync(UpdateBillDto updateBillDto)
         {
             var value = await _billService.UpdateAsync(updateBillDto);

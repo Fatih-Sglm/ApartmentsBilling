@@ -16,13 +16,11 @@ namespace ApartmentsBilling.ApiUI.Controllers
     {
         private readonly IMessageService _messageService;
         private readonly IMapper _mapper;
-        private readonly IUserService _userService;
 
-        public MessageController(IMessageService messageService, IMapper mapper, IUserService userService)
+        public MessageController(IMessageService messageService, IMapper mapper)
         {
             _messageService = messageService;
             _mapper = mapper;
-            _userService = userService;
         }
 
         [HttpPost]

@@ -59,9 +59,9 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 await _billRepository.SaveChangeAsync();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("Fatura" + CustomErrorMessage.InsertErrorMessage);
+                throw new Exception("Fatura" + CustomErrorMessage.InsertErrorMessage + "\n" + ex.Message);
             }
         }
         public async Task<List<BillDto>> GetListWithInclude(Expression<Func<Bill, bool>> predicate, bool checkstatus = false, bool tracking = true, Func<IQueryable<Bill>, IOrderedQueryable<Bill>> orderBy = null, params Expression<Func<Bill, object>>[] includes)
@@ -82,9 +82,9 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 await _billRepository.SaveChangeAsync();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception("BU Fatura " + CustomErrorMessage.DeleteErrorMessage);
+                throw new Exception("BU Fatura " + CustomErrorMessage.DeleteErrorMessage + "\n" + ex.Message);
             }
         }
         public async Task<bool> UpdateAsync(UpdateBillDto updateBillDto)
@@ -99,10 +99,7 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 await _billRepository.SaveChangeAsync();
                 return true;
             }
-            catch (Exception)
-            {
-                throw new Exception("Fatura " + CustomErrorMessage.UpdatetErrorMessage);
-            }
+            catch (Exception ex) { throw new Exception("Fatura " + CustomErrorMessage.UpdatetErrorMessage + "\n" + ex.Message); }
         }
     }
 }
