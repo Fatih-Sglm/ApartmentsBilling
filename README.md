@@ -2,7 +2,7 @@
 
 
 
-Merhabalar Sizlere Kısaca PRojeyi açıklamak istiyorum;
+Merhabalar Sizlere Kısaca Projeyi Açıklamak İstiyorum;
 
 Şuan Sadece APi tarafı çalışmakta,CLient Ksımı için hala uğraşıyorum!
 
