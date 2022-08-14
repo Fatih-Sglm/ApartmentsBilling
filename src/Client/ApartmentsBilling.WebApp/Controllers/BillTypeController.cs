@@ -1,6 +1,5 @@
 ﻿using ApartmentsBilling.Common.Dtos.BillTypeDto;
 using ApartmentsBilling.Common.Dtos.CustomDto;
-using ApartmentsBilling.Common.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -34,7 +33,7 @@ namespace ApartmentsBilling.WebApp.Controllers
             var response = await _client.GetAsync(_client.BaseAddress + $"BillType/{id}");
             if (response.IsSuccessStatusCode)
             {
-                var value = await response.Content.ReadFromJsonAsync<CustomResponseDto<GetBillTypeVm>>();
+                var value = await response.Content.ReadFromJsonAsync<CustomResponseDto<GetBillTypeDto>>();
                 return View(_mapper.Map<UpdateBillTypeDto>(value.Data));
             }
             return await ErrorView(response);

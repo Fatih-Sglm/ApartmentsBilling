@@ -5,7 +5,6 @@ using ApartmentsBilling.Common.Dtos.MessageDto;
 using ApartmentsBilling.Common.Dtos.PaymentDto;
 using ApartmentsBilling.Common.Dtos.UserDtos;
 using ApartmentsBilling.Common.Dtos.VehicleDto;
-using ApartmentsBilling.Common.ViewModels;
 using ApartmentsBilling.Entity.Entities;
 using AutoMapper;
 
@@ -15,6 +14,7 @@ namespace ApartmentsBilling.BussinessLayer.Mapper
     {
         public GenericProfile()
         {
+            AllowNullDestinationValues = true;
             #region Bill
             CreateMap<Bill, BillDto>().
                ForMember(x => x.FloorNumber, y => y.MapFrom(z => z.Flat.FloorNumber)).
@@ -32,7 +32,7 @@ namespace ApartmentsBilling.BussinessLayer.Mapper
             CreateMap<UpdateBillDto, Bill>();
             #endregion
             #region BillType
-            CreateMap<BillType, GetBillTypeVm>();
+            CreateMap<BillType, GetBillTypeDto>();
             CreateMap<CreateBillTypeDto, BillType>();
             CreateMap<UpdateBillTypeDto, BillType>();
             #endregion

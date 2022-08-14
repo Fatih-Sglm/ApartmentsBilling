@@ -1,7 +1,6 @@
 ﻿using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
 using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.Common.Dtos.VehicleDto;
-using ApartmentsBilling.Entity.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,18 +25,15 @@ namespace ApartmentsBilling.ApiUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateVehicleDto createVehicleDto)
         {
-            if (await _vehicleService.AddAsync(_mapper.Map<Vehicle>(createVehicleDto)))
-                return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Araç Eklendi"));
-            return BadRequest();
+            await _vehicleService.AddAsync(createVehicleDto);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Araç Eklendi"));
         }
 
         [HttpPut]
         public async Task<IActionResult> Update(UpdateVehicleDto updateVehicleDto)
         {
-            var v = _mapper.Map(updateVehicleDto, await _vehicleService.GetSingleAsync(x => x.Id == updateVehicleDto.Id, true));
-            if (await _vehicleService.UpdateAsync(_mapper.Map<Vehicle>(v)))
-                return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Araç Güncellendi"));
-            return BadRequest();
+            await _vehicleService.UpdateAsync(updateVehicleDto);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Araç Güncellendi"));
         }
 
         [HttpGet]
@@ -80,9 +76,8 @@ namespace ApartmentsBilling.ApiUI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveAsync(Guid id)
         {
-            var values = await _vehicleService.GetSingleWtihInclude(x => x.Id == id, includes: x => x.User, checkstatus: true);
-            await _vehicleService.RemoveAsync(values);
-            return NoContent();
+            await _vehicleService.RemoveAsync(id);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Araç Silindi"));
         }
     }
 }

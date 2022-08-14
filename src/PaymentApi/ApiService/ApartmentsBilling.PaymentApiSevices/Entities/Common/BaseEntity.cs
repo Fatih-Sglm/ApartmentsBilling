@@ -16,5 +16,6 @@ namespace ApartmentsBilling.PaymentApiSevices.Entities.Common
         [BsonRepresentation(BsonType.DateTime)]
         public DateTime UpdateAt { get; set; }
         public bool Status { get; set; } = true;
+
     }
 }

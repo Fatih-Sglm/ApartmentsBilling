@@ -1,6 +1,4 @@
 ﻿using ApartmentsBilling.DataAccesLayer.Contexts;
-using ApartmentsBilling.DataAccesLayer.Features.Abstract;
-using ApartmentsBilling.DataAccesLayer.Features.Concrete.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,9 +14,7 @@ namespace ApartmentsBilling.DataAccesLayer
             {
                 x.UseSqlServer(configuration.GetConnectionString("MSS"));
                 x.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-            });
-
-            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            }, ServiceLifetime.Transient);
         }
     }
 }

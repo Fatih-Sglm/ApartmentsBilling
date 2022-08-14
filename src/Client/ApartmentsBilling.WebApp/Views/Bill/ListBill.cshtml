@@ -21,6 +21,7 @@
                         <th scope="col">Ödenme Bilgisi</th>
                         <th scope="col">Ödeme için Kalan Süre</th>
                         <th scope="col">Fatura Tutarı</th>
+                        <th scope="col">İşlemler</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,23 +33,23 @@
 
                         <tr>
                             <th scope="row">@i</th>
-                            <td id="@i">@item.BillOwner</td>
-                            <td>@item.BillType</td>
-                            <td>@item.FloorNumber</td>
+                            <td  scope="row">@item.BillOwner</td>
+                            <td scope="row">@item.BillType</td>
+                            <td scope="row">@item.FloorNumber</td>
                             @if (@item.IsPayment == true)
                             {
-                                <td>Ödendi</td>
+                                <td scope="row">Ödendi</td>
                             }
                             else
                             {
-                                <td>Ödenmedi</td>
+                                <td scope="row">Ödenmedi</td>
                             }
                             @{
                                 var lastDays = (@item.LastPaymentDate - @DateTime.Now).ToString(@"dd\.hh\:mm");
                             }
-                            <td>@lastDays</td>
-                            <td>@item.Price</td>
-                            <th>
+                            <td scope="row">@lastDays</td>
+                            <td scope="row">@item.Price</td>
+                            <th scope="row" >
                                 <span class="btn bg-cyan waves-effect"><a href="/Blog/Blogdetail/@item.Id" title="Detayı Gör"> <i class="material-icons"> folder</i></a> </span>
                                 <a class="btn bg-purple waves-effect" href="/Bill/Update/@item.Id" title="Güncelle">  <i class="material-icons">update</i></a>
                                 <a class="btn bg-red waves-effect" href="" title="Sil">Delete</a>

@@ -24,34 +24,21 @@ namespace ApartmentsBilling.ApiUI.Controllers
             _mapper = mapper;
         }
         [HttpPost]
-        [Permission(UserRole.Admin)]
+        //[Permission(UserRole.Admin)]
         public async Task<IActionResult> CreateAsync(CreateUserDto userdto)
         {
-            if (await _userService.AddUserAsync(userdto))
-                return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Kullanıcı Başarılı Bir şekilde Oluşturuldu"));
-            return BadRequest();
-
+            await _userService.AddUserAsync(userdto, false);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Kullanıcı Başarılı Bir şekilde Oluşturuldu"));
         }
 
-        [HttpPatch]
 
-        public async Task<IActionResult> ChangePassWordAsync(ChangePasswordDto changePasswordDto)
-        {
-
-            await _userService.GetSingleAsync(x => x.Id == changePasswordDto.Id, true);
-            if (await _userService.ChangePassword(changePasswordDto))
-                return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Şifreniz Başarılı Bir şekilde Değiştirildi"));
-            return BadRequest();
-        }
 
         [HttpPut]
         [Permission(UserRole.Admin)]
         public async Task<IActionResult> UpdateAsync(UpdateUserDto updateUser)
         {
-            var user = _mapper.Map(updateUser, await _userService.GetSingleAsync(x => x.Id == updateUser.Id, true));
-            if (await _userService.UpdateAsync(_mapper.Map<User>(user)))
-                return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Kullanıcı Başarılı Bir şekilde Güncelleştirildi"));
-            return BadRequest();
+            await _userService.UpdateAsync(updateUser);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Kullanıcı Başarılı Bir şekilde Güncelleştirildi"));
         }
 
         [HttpGet]
@@ -69,21 +56,20 @@ namespace ApartmentsBilling.ApiUI.Controllers
         }
 
         [HttpGet("{id}")]
-        [Permission(UserRole.Admin)]
+        //[Permission(UserRole.Admin)]
         public async Task<IActionResult> GetSingleAsync(Guid id)
         {
             var user = await _userService.GetSingleAsync(x => x.Id == id, true);
-            return CreatActionResult(CustomResponseDto<GetUserDto>.SuccesWithData(_mapper.Map<GetUserDto>(user), null));
-
+            return CreatActionResult(CustomResponseDto<GetUserDto>.SuccesWithData(user));
         }
 
         [HttpDelete("{id}")]
         [Permission(UserRole.Admin)]
         public async Task<IActionResult> RemoveAsync(Guid id)
         {
-            var user = await _userService.GetSingleAsync(x => x.Id == id, true);
-            await _userService.RemoveAsync(user);
-            return NoContent();
+            await _userService.RemoveAsync(id);
+            return CreatActionResult(CustomResponseDto<GetUserDto>.SuccesWithOutData("Kullanıcı Silindi"));
+
         }
     }
 }

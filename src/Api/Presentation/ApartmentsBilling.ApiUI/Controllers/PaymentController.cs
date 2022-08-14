@@ -2,6 +2,8 @@
 using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
 using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.Common.Dtos.PaymentDto;
+using ApartmentsBilling.DataAccesLayer.Abstract;
+using ApartmentsBilling.Entity.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,20 +19,22 @@ namespace ApartmentsBilling.ApiUI.Controllers
     public class PaymentController : CustomBaseController
     {
         private readonly IBillService _billService;
+        private readonly IGenericRepository<Bill> _repository;
         private readonly IMapper _mapper;
         readonly HttpClient client = new();
 
-        public PaymentController(IBillService billService, IMapper mapper)
+        public PaymentController(IBillService billService, IMapper mapper, IGenericRepository<Bill> repository)
         {
             _billService = billService;
             _mapper = mapper;
             client.BaseAddress = new Uri("https://localhost:44382/api/");
+            _repository = repository;
         }
         [HttpPost]
         public async Task<IActionResult> CreateAsync(BillPaymentDto billPaymentDto)
         {
 
-            var value = await _billService.GetSingleWtihInclude(x => x.Id == billPaymentDto.BillId, true, true, x => x.Flat.User, x => x.BillType);
+            var value = await _repository.GetSingleWtihInclude(x => x.Id == billPaymentDto.BillId, true, true, x => x.Flat.User, x => x.BillType);
             if (value == null)
                 return NotFound();
             if (value.IsPayment)
@@ -45,7 +49,7 @@ namespace ApartmentsBilling.ApiUI.Controllers
             if (response.IsSuccessStatusCode)
             {
                 value.IsPayment = true;
-                await _billService.UpdateAsync(value);
+                _repository.Update(value);
                 return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Ödeme Başarıyla gerçekleşti"));
             }
             throw new Exception("Ödeme Başarısız Oldu Lütfen Tekrar deneyin!");

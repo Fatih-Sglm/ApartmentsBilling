@@ -3,8 +3,6 @@ using ApartmentsBilling.Common.Dtos.AdminDto;
 using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.Common.Dtos.SystemDto;
 using ApartmentsBilling.Common.Dtos.UserDtos;
-using ApartmentsBilling.Entity.Entities;
-using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -14,54 +12,31 @@ namespace ApartmentsBilling.ApiUI.Controllers
     [AllowAnonymous]
     public class AuthController : CustomBaseController
     {
-        private readonly IUserService _userService;
-        private readonly IApartmentService _apartmentService;
-        private readonly IFlatService _flatService;
-        private readonly IMapper _mapper;
-        public AuthController(IUserService userService, IApartmentService apartmentService, IFlatService flatService, IMapper mapper)
+        private readonly IAuthService _authService;
+
+        public AuthController(IAuthService authService)
         {
-            _userService = userService;
-            _apartmentService = apartmentService;
-            _flatService = flatService;
-            _mapper = mapper;
+            _authService = authService;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginUserDto loginUserDto)
         {
-            return CreatActionResult(CustomResponseDto<TokenDto>.SuccesWithData(await _userService.LoginAsync(loginUserDto)));
+            return CreatActionResult(CustomResponseDto<TokenDto>.SuccesWithData(await _authService.LoginAsync(loginUserDto)));
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register(CreateAdminDto createAdminDto)
         {
-            Apartment apt = new()
-            {
-                Name = createAdminDto.ApartmentName,
-            };
-            await _apartmentService.AddAsync(apt);
-            Flat f = new()
-            {
-                FloorLocation = createAdminDto.FloorLocation,
-                ApartmentId = apt.Id,
-                WhichBlock = createAdminDto.WhichBlock,
-                FloorType = createAdminDto.FloorType,
-                IsRented = createAdminDto.IsRented,
-                FloorNumber = createAdminDto.FloorNumber,
-                IsEmpty = false
-            };
-            await _flatService.AddAsync(f);
-            User user = new()
-            {
-                FullName = createAdminDto.FullName,
-                Email = createAdminDto.Email,
-                FlatId = f.Id,
-                PhoneNumber = createAdminDto.PhoneNumber,
-                IdNumber = createAdminDto.IdNumber,
-                Role = UserRole.Admin,
-            };
-            await _userService.AddUserAsync(_mapper.Map<CreateUserDto>(user));
+            await _authService.Register(createAdminDto);
             return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Kayıt Başarılı"));
+        }
+
+        [HttpPatch]
+        public async Task<IActionResult> ChangePassWordAsync(ChangePasswordDto changePasswordDto)
+        {
+            await _authService.ChangePassword(changePasswordDto);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Şifreniz Başarılı Bir şekilde Değiştirildi"));
         }
     }
 }

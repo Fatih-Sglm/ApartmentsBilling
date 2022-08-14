@@ -1,6 +1,6 @@
 ﻿using ApartmentsBilling.Common.Dtos.BillsDto;
+using ApartmentsBilling.Common.Dtos.BillTypeDto;
 using ApartmentsBilling.Common.Dtos.CustomDto;
-using ApartmentsBilling.Common.ViewModels;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -36,14 +36,15 @@ namespace ApartmentsBilling.WebApp.Controllers
         }
 
 
-        public async Task<IActionResult> UpdateAsync(Guid id)
+        public async Task<IActionResult> Update(Guid id)
         {
             IsAuthentic();
             var response = await _client.GetAsync(_client.BaseAddress + $"Bill/{id}");
 
             if (response.IsSuccessStatusCode)
             {
-                ViewBag.BillType = await _client.GetFromJsonAsync<CustomResponseDto<List<GetBillTypeVm>>>("Bill");
+                var respons = await _client.GetFromJsonAsync<CustomResponseDto<List<GetBillTypeDto>>>(_client.BaseAddress + "BillType");
+                ViewBag.BillType = respons.Data;
                 var bill = await response.Content.ReadFromJsonAsync<CustomResponseDto<BillDto>>();
                 return View(_mapper.Map<UpdateBillDto>(bill.Data));
             }
@@ -52,7 +53,7 @@ namespace ApartmentsBilling.WebApp.Controllers
         }
         [HttpPut]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> UpdateAsync(UpdateBillDto updateBillDto)
+        public async Task<IActionResult> Update(UpdateBillDto updateBillDto)
         {
             IsAuthentic();
             var response = await _client.PutAsJsonAsync("Bill", updateBillDto);
