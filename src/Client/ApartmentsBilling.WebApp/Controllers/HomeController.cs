@@ -1,5 +1,5 @@
-﻿using ApartmentsBilling.Common.Dtos.CustomDto;
-using ApartmentsBilling.Common.ViewModels;
+﻿using ApartmentsBilling.Common.Dtos.BillTypeDto;
+using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.WebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +29,7 @@ namespace ApartmentsBilling.WebApp.Controllers
         {
             try
             {
-                var response = await _client.GetFromJsonAsync<CustomResponseDto<List<GetBillTypeVm>>>(_client.BaseAddress + "BillType");
+                var response = await _client.GetFromJsonAsync<CustomResponseDto<List<GetBillTypeDto>>>(_client.BaseAddress + "BillType");
                 ViewBag.data = response.Data;
                 return View();
             }

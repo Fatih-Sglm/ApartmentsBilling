@@ -29,20 +29,15 @@ namespace ApartmentsBilling.ApiUI.Controllers
         [Permission(UserRole.User)]
         public async Task<IActionResult> CreateAsync(CreateMessageDto createMessageDto)
         {
-            await _userService.GetSingleAsync(x => x.Id == createMessageDto.UserId);
-            if (await _messageService.AddAsync(_mapper.Map<Message>(createMessageDto)))
-                return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Mesaj Gönerildi"));
-
-            return BadRequest();
+            await _messageService.AddAsync(createMessageDto);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Mesaj Gönerildi"));
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(UpdateMessageDto updateMessageDto)
         {
-            var value = _mapper.Map(updateMessageDto, await _messageService.GetSingleAsync(x => x.Id == updateMessageDto.Id, true));
-            if (await _messageService.UpdateAsync(_mapper.Map<Message>(value)))
-                return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Mesaj Güncellendi"));
-            return BadRequest();
+            await _messageService.UpdateAsync(updateMessageDto);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Mesaj Güncellendi"));
         }
         [HttpGet]
         public async Task<IActionResult> GetListAsync()
@@ -68,20 +63,13 @@ namespace ApartmentsBilling.ApiUI.Controllers
         public async Task<IActionResult> GetSingleAsync(Guid id)
         {
             var value = await _messageService.GetSingleWtihInclude(x => x.Id == id, checkstatus: true, includes: x => x.User);
-            value.IsRead = true;
-            await _messageService.UpdateAsync(value);
-            if (value == null)
-                return BadRequest();
             return CreatActionResult(CustomResponseDto<GetMessageDto>.SuccesWithData(_mapper.Map<GetMessageDto>(value), null));
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> RemoveAsync(Guid id)
         {
-            var value = await _messageService.GetSingleAsync(x => x.Id == id, true);
-            await _messageService.RemoveAsync(value);
-            if (value == null)
-                return BadRequest();
+            await _messageService.RemoveAsync(id);
             return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Mesaj Silindi"));
         }
     }

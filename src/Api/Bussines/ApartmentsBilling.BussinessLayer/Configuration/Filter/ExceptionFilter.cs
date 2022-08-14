@@ -39,11 +39,12 @@ namespace ApartmentsBilling.BussinessLayer.Configuration.Filter
 
             var logger = context.HttpContext.RequestServices.GetService<MssqlLog>();
             var response = context.Exception.Message;
+            var errors = JsonSerializer.Serialize(CustomResponseDto<NoContent>.Fail(response));
             var ExeptionResult = context.Exception switch
             {
-                ClientSideException => new BadRequestObjectResult(JsonSerializer.Serialize(CustomResponseDto<NoContent>.Fail(response))),
-                NotFoundException => new NotFoundObjectResult(JsonSerializer.Serialize(response)),
-                _ => context.Result = new StatusCodeResult(500)
+                ClientSideException => new BadRequestObjectResult(errors),
+                NotFoundException => new NotFoundObjectResult(errors),
+                _ => context.Result = new StatusCodeObjectResult(500, errors),
             };
             if (context.Exception.GetType() != typeof(ClientSideException))
                 logger._logger.Error(new JsonResult(new { error = context.Exception.Message, context.Exception.InnerException, }).Value.ToString());

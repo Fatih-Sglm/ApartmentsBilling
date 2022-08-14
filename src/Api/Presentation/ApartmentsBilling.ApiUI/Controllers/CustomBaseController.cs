@@ -19,7 +19,7 @@ namespace ApartmentsBilling.ApiUI.Controllers
         protected const string admin = "Admin";
         protected const string user = "User";
 
-        public IActionResult CreatActionResult<T>(CustomResponseDto<T> dto)
+        public IActionResult CreatActionResult<GetBillTypeDto>(CustomResponseDto<GetBillTypeDto> dto)
         {
             return new ObjectResult(dto)
             {

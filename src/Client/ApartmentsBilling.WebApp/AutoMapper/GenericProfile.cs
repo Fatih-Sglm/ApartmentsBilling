@@ -5,7 +5,6 @@ using ApartmentsBilling.Common.Dtos.MessageDto;
 using ApartmentsBilling.Common.Dtos.PaymentDto;
 using ApartmentsBilling.Common.Dtos.UserDtos;
 using ApartmentsBilling.Common.Dtos.VehicleDto;
-using ApartmentsBilling.Common.ViewModels;
 using ApartmentsBilling.Entity.Entities;
 using AutoMapper;
 
@@ -34,7 +33,7 @@ namespace ApartmentsBilling.WebApp.AutoMapper
             CreateMap<Bill, UpdateBillDto>();
             #endregion
             #region BillType
-            CreateMap<BillType, GetBillTypeVm>().ReverseMap();
+            CreateMap<BillType, GetBillTypeDto>().ReverseMap();
             CreateMap<CreateBillTypeDto, BillType>().ReverseMap();
             CreateMap<UpdateBillTypeDto, BillType>().ReverseMap();
             #endregion
