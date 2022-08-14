@@ -28,10 +28,17 @@ Mesaj kısmında şuan için Yönetici sadece mesajları görntüleyip silebilir
 
 Kullanmış Olduğum Teknolojiler:
 
-.Net Core 5.0,
-Entity FrameWork 5.0.17
-AutoFac
-MimeKit
-Redis
-AutoMapper
-FluentValidation
+  #### Technologies
+- .NET Core 5.0
+- Asp.NET for Restful Api
+- MsSql
+- Entity FrameWork Core 5.0.17
+- Automapper
+- AutoFac
+- FluentValidation
+- MimeKit
+
+#### Techniques
+- JWT (Json Web Tokens)
+- IoC 
+- Microsoft Built In Dependency Resolver
