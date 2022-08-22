@@ -7,8 +7,8 @@ Merhabalar Sizlere Kısaca Projeyi Açıklamak İstiyorum;
 Şuan Sadece APi tarafı çalışmakta,CLient Ksımı için hala uğraşıyorum!
 
 
-Öncelikle Siteye üye oluyoruz. Üye olurken kenidimize bir apartman adı ve bir dairede oluşturyoruz ve Otomatik olarak
-Oluşturduğumuz Apartmanın yöneticsi olyoruz
+Öncelikle Siteye üye oluyoruz. Üye olurken kendimize bir apartman adı ve bir dairede oluşturyoruz ve Otomatik olarak
+Oluşturduğumuz Apartmanın yöneticisi oluyoruz
 
 UYARI: Şifre sistem tarafından otomatik oluşup belirtmiş olduğunuz maile gelmektadir.
 Deneme için temp-mail kullanılablir
