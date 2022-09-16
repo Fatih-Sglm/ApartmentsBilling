@@ -11,7 +11,7 @@ namespace ApartmentsBilling.Common.Dtos.BillsDto
         public string FloorNumber { get; set; }
         public bool IsPayment { get; set; }
 
-        public DateTime LastPaymentDate { get; set; }
+        public string LastPaymentDate { get; set; }
 
     }
 }

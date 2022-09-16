@@ -23,28 +23,26 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             _mapper = mapper;
         }
 
-        public async Task<bool> AddAsync(CreateBillTypeDto createBillTypeDto)
+        public async Task AddAsync(CreateBillTypeDto createBillTypeDto)
         {
             var value = _mapper.Map<BillType>(createBillTypeDto);
             try
             {
                 await _billTypeRepository.AddAsync(value);
                 await _billTypeRepository.SaveChangeAsync();
-                return true;
             }
             catch (Exception ex)
             {
                 throw new Exception("Fatura Tipi " + CustomErrorMessage.InsertErrorMessage + "\n" + ex.Message);
             }
         }
-        public async Task<bool> AddRangeAsync(List<CreateBillTypeDto> createBillTypeDtos)
+        public async Task AddRangeAsync(List<CreateBillTypeDto> createBillTypeDtos)
         {
             var value = _mapper.Map<List<BillType>>(createBillTypeDtos);
             try
             {
                 await _billTypeRepository.AddRangeAsync(value);
                 await _billTypeRepository.SaveChangeAsync();
-                return true;
             }
             catch (Exception)
             {
@@ -53,7 +51,8 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
         }
         public List<GetBillTypeDto> GetAll(Func<IQueryable<BillType>, IOrderedQueryable<BillType>> orderBy = null, bool checkstatus = false, bool tracking = true)
         {
-            var value = _mapper.Map<List<GetBillTypeDto>>(_billTypeRepository.GetAll(orderBy, checkstatus, tracking));
+            var billtype = _billTypeRepository.GetAll(orderBy, checkstatus, tracking);
+            var value = _mapper.Map<List<GetBillTypeDto>>(billtype);
             return value;
         }
         public async Task<GetBillTypeDto> GetSingleAsync(Expression<Func<BillType, bool>> expression, bool checkstatus = false, bool tracking = true)
@@ -61,28 +60,26 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             var value = await _billTypeRepository.GetSingleAsync(expression, checkstatus, tracking);
             return _mapper.Map<GetBillTypeDto>(value);
         }
-        public async Task<bool> RemoveAsync(Guid id)
+        public async Task RemoveAsync(Guid id)
         {
             var value = await _billTypeRepository.GetSingleAsync(x => x.Id == id, true);
             try
             {
                 _billTypeRepository.Remove(value);
                 await _billTypeRepository.SaveChangeAsync();
-                return true;
             }
             catch (Exception)
             {
                 throw new Exception("Fatura Tipi " + CustomErrorMessage.DeleteErrorMessage);
             }
         }
-        public async Task<bool> UpdateAsync(UpdateBillTypeDto updateBillTypeDto)
+        public async Task UpdateAsync(UpdateBillTypeDto updateBillTypeDto)
         {
             var value = await _billTypeRepository.GetSingleAsync(x => x.Id == updateBillTypeDto.Id);
             try
             {
                 _billTypeRepository.Update(_mapper.Map(updateBillTypeDto, value));
                 await _billTypeRepository.SaveChangeAsync();
-                return true;
             }
             catch (Exception)
             {

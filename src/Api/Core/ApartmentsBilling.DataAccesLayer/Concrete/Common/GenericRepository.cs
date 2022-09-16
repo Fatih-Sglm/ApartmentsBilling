@@ -40,6 +40,7 @@ namespace ApartmentsBilling.DataAccesLayer.Features.Concrete.Common
         public bool Update(T entity)
         {
             EntityEntry<T> entityEntry = Table.Update(entity);
+
             return entityEntry.State == EntityState.Modified;
         }
         #endregion
@@ -150,11 +151,6 @@ namespace ApartmentsBilling.DataAccesLayer.Features.Concrete.Common
         }
         #endregion
         #region OtherFunction
-
-        public IQueryable<T> AsQueryable()
-        {
-            return Table.AsQueryable();
-        }
         public async Task SaveChangeAsync()
         {
             await _context.SaveChangesAsync();

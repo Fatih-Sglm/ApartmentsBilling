@@ -19,7 +19,8 @@ namespace ApartmentsBilling.BussinessLayer.Mapper
             CreateMap<Bill, BillDto>().
                ForMember(x => x.FloorNumber, y => y.MapFrom(z => z.Flat.FloorNumber)).
                ForMember(x => x.BillType, y => y.MapFrom(z => z.BillType.Name)).
-               ForMember(x => x.BillOwner, y => y.MapFrom(z => z.Flat.User.FullName));
+               ForMember(x => x.BillOwner, y => y.MapFrom(z => z.Flat.User.FullName)).
+               ForMember(x => x.LastPaymentDate, y => y.MapFrom(z => z.LastPaymentDate.ToString("d")));
 
             CreateMap<Bill, CreateBillReceiptDto>().
                 ForMember(x => x.BillId, y => y.MapFrom(z => z.Id)).

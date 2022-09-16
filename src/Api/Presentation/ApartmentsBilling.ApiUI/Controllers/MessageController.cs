@@ -1,4 +1,5 @@
-﻿using ApartmentsBilling.BussinessLayer.Configuration.Filter.FilterAttirbute;
+﻿using ApartmentsBilling.BussinessLayer.Configuration.Authorize;
+using ApartmentsBilling.BussinessLayer.Configuration.Filter.FilterAttirbute;
 using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
 using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.Common.Dtos.MessageDto;
@@ -16,11 +17,13 @@ namespace ApartmentsBilling.ApiUI.Controllers
     {
         private readonly IMessageService _messageService;
         private readonly IMapper _mapper;
+        private readonly IAuthHorize _authHorize;
 
-        public MessageController(IMessageService messageService, IMapper mapper)
+        public MessageController(IMessageService messageService, IMapper mapper, IAuthHorize authHorize)
         {
             _messageService = messageService;
             _mapper = mapper;
+            _authHorize = authHorize;
         }
 
         [HttpPost]
@@ -30,7 +33,6 @@ namespace ApartmentsBilling.ApiUI.Controllers
             await _messageService.AddAsync(createMessageDto);
             return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Mesaj Gönerildi"));
         }
-
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(UpdateMessageDto updateMessageDto)
         {
@@ -40,9 +42,9 @@ namespace ApartmentsBilling.ApiUI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetListAsync()
         {
-            if (!IsAuthorize())
+            if (!_authHorize.IsAuthorize())
             {
-                var values = await _messageService.GetListWithInclude(x => x.UserId == Guid.Parse(User().Id), checkstatus: true, tracking: true, orderBy: x => x.OrderByDescending(x => x.CreatedDate), includes: x => x.User);
+                var values = await _messageService.GetListWithInclude(x => x.UserId == Guid.Parse(_authHorize.User().Id), checkstatus: true, tracking: true, orderBy: x => x.OrderByDescending(x => x.CreatedDate), includes: x => x.User);
                 return CreatActionResult(CustomResponseDto<List<GetMessageDto>>.SuccesWithData(_mapper.Map<List<GetMessageDto>>(values)));
             }
             var value = await _messageService.GetListWithInclude(null, orderBy: x => x.OrderByDescending(x => x.CreatedDate), checkstatus: true, includes: x => x.User);

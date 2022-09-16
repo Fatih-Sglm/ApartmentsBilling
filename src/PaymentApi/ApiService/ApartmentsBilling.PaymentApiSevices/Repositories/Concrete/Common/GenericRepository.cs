@@ -1,29 +1,26 @@
 ﻿using ApartmentsBilling.PaymentApiSevices.DBSettings;
 using ApartmentsBilling.PaymentApiSevices.Entities.Common;
-using ApartmentsBilling.PaymentApiSevices.Features.Abstract.common;
+using ApartmentsBilling.PaymentApiSevices.Repositories.Common;
 using MongoDB.Driver;
-using MongoDB.Driver.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace ApartmentsBilling.PaymentApiSevices.Features.Concrete.common
+namespace ApartmentsBilling.PaymentApiSevices.Repositories.Concrete.Common
 {
-    public class GenericService<T> : IGenericService<T> where T : BaseEntity
+    public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         protected readonly IMongoCollection<T> Collection;
-        public GenericService(IDbSettings dbSettings)
+        public GenericRepository(IDbSettings dbSettings)
         {
-
             var client = new MongoClient(dbSettings.ConnectionString);
             var db = client.GetDatabase(dbSettings.DatabaseName);
             this.Collection = db.GetCollection<T>(typeof(T).Name.ToLowerInvariant());
         }
         public async Task<bool> CreateAsync(T entity)
         {
-
             try
             {
                 await Collection.InsertOneAsync(entity);
@@ -54,11 +51,6 @@ namespace ApartmentsBilling.PaymentApiSevices.Features.Concrete.common
         public async Task<T> GetById(string id)
         {
             return await Collection.Find(x => x.Id == id).FirstOrDefaultAsync();
-        }
-
-        public Task<bool> UpdateAsync(T entity)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

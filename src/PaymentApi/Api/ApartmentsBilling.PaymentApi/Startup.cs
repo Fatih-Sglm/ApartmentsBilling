@@ -1,7 +1,8 @@
 using ApartmentsBilling.PaymentApiSevices.DBSettings;
-using ApartmentsBilling.PaymentApiSevices.Features.Abstract;
-using ApartmentsBilling.PaymentApiSevices.Features.Concrete;
 using ApartmentsBilling.PaymentApiSevices.Mapper;
+using ApartmentsBilling.PaymentApiSevices.Repositories.Common;
+using ApartmentsBilling.PaymentApiSevices.Repositories.Concrete.Common;
+using ApartmentsBilling.PaymentApiSevices.Services.Concrete;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -35,6 +36,7 @@ namespace ApartmentsBilling.PaymentApi
             });
 
             services.AddScoped<IReceiptService, ReceiptService>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.Configure<DbSettings>(Configuration.GetSection("MongoDbSettings"));
             services.AddControllers();
             services.AddSwaggerGen(c =>

@@ -1,4 +1,5 @@
-﻿using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
+﻿using ApartmentsBilling.BussinessLayer.Configuration.Authorize;
+using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
 using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.Common.Dtos.VehicleDto;
 using AutoMapper;
@@ -15,11 +16,13 @@ namespace ApartmentsBilling.ApiUI.Controllers
         private readonly IMapper _mapper;
 
         private readonly IVehicleService _vehicleService;
+        private readonly IAuthHorize _authHorize;
 
-        public VehicleController(IMapper mapper, IVehicleService vehicleService)
+        public VehicleController(IMapper mapper, IVehicleService vehicleService, IAuthHorize authHorize)
         {
             _mapper = mapper;
             _vehicleService = vehicleService;
+            _authHorize = authHorize;
         }
 
         [HttpPost]
@@ -39,9 +42,9 @@ namespace ApartmentsBilling.ApiUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            if (!IsAuthorize())
+            if (!_authHorize.IsAuthorize())
             {
-                var value = await _vehicleService.GetListWithInclude(x => x.UserId == Guid.Parse(User().Id), checkstatus: true, tracking: false, orderBy: x => x.OrderByDescending(x => x.CreatedDate), includes: x => x.User);
+                var value = await _vehicleService.GetListWithInclude(x => x.UserId == Guid.Parse(_authHorize.User().Id), checkstatus: true, tracking: false, orderBy: x => x.OrderByDescending(x => x.CreatedDate), includes: x => x.User);
                 var map = _mapper.Map<List<GetVehicleDto>>(value);
                 return CreatActionResult(CustomResponseDto<List<GetVehicleDto>>.SuccesWithData(map));
             }
@@ -54,9 +57,9 @@ namespace ApartmentsBilling.ApiUI.Controllers
         [HttpGet("Edit")]
         public async Task<IActionResult> GetAllForEdit()
         {
-            if (!IsAuthorize())
+            if (!_authHorize.IsAuthorize())
             {
-                var value = await _vehicleService.GetListWithInclude(x => x.UserId == Guid.Parse(User().Id), tracking: false, orderBy: x => x.OrderByDescending(x => x.CreatedDate), includes: x => x.User);
+                var value = await _vehicleService.GetListWithInclude(x => x.UserId == Guid.Parse(_authHorize.User().Id), tracking: false, orderBy: x => x.OrderByDescending(x => x.CreatedDate), includes: x => x.User);
                 var map = _mapper.Map<List<GetVehicleDto>>(value);
                 return CreatActionResult(CustomResponseDto<List<GetVehicleDto>>.SuccesWithData(map));
             }

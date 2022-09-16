@@ -1,8 +1,6 @@
-﻿using ApartmentsBilling.BussinessLayer.Configuration.Filter.FilterAttirbute;
-using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
+﻿using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
 using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.Common.Dtos.FlatDto;
-using ApartmentsBilling.Entity.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ApartmentsBilling.ApiUI.Controllers
 {
-    [Permission(UserRole.Admin)]
+    //[Permission(UserRole.Admin)]
     public class FlatController : CustomBaseController
     {
         private readonly IFlatService _flatService;
@@ -30,11 +28,8 @@ namespace ApartmentsBilling.ApiUI.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(UpdateFlatDto updateFlatDto)
         {
-            var result = await _flatService.UpdateAsync(updateFlatDto);
-            if (result)
-                return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Daire Güncelleme Başarılı"));
-            else
-                return BadRequest();
+            await _flatService.UpdateAsync(updateFlatDto);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Daire Güncelleme Başarılı"));
         }
 
         [HttpGet]

@@ -84,7 +84,7 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             }
             catch (Exception ex)
             {
-                throw new Exception("BU Fatura " + CustomErrorMessage.DeleteErrorMessage + "\n" + ex.Message);
+                throw new Exception("Bu Fatura " + CustomErrorMessage.DeleteErrorMessage + "\n" + ex.Message);
             }
         }
         public async Task<bool> UpdateAsync(UpdateBillDto updateBillDto)

@@ -1,8 +1,6 @@
-﻿using ApartmentsBilling.BussinessLayer.Configuration.Filter.FilterAttirbute;
-using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
+﻿using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
 using ApartmentsBilling.Common.Dtos.BillTypeDto;
 using ApartmentsBilling.Common.Dtos.CustomDto;
-using ApartmentsBilling.Entity.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ApartmentsBilling.ApiUI.Controllers
 {
-    [Permission(UserRole.Admin)]
+    // [Permission(UserRole.Admin)]
     public class BillTypeController : CustomBaseController
     {
 
@@ -32,12 +30,8 @@ namespace ApartmentsBilling.ApiUI.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(UpdateBillTypeDto updateBillTypeDto)
         {
-            var result = await _billTypeService.UpdateAsync(updateBillTypeDto);
-            if (result)
-            {
-                return CreatActionResult(CustomResponseDto<List<NoContent>>.SuccesWithOutData("Ürün Güncelleme Başarılı"));
-            }
-            return BadRequest();
+            await _billTypeService.UpdateAsync(updateBillTypeDto);
+            return CreatActionResult(CustomResponseDto<List<NoContent>>.SuccesWithOutData("Ürün Güncelleme Başarılı"));
         }
 
         [HttpGet]

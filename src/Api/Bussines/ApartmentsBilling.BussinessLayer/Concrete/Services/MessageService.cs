@@ -24,7 +24,7 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             _mapper = mapper;
         }
 
-        public async Task<bool> AddAsync(CreateMessageDto createMessageDto)
+        public async Task AddAsync(CreateMessageDto createMessageDto)
         {
             //await _userService.GetSingleAsync(x => x.Id == createMessageDto.UserId);
             var value = _mapper.Map<Message>(createMessageDto);
@@ -32,7 +32,6 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             {
                 await _meesageRepository.AddAsync(value);
                 await _meesageRepository.SaveChangeAsync();
-                return true;
             }
             catch (Exception)
             {
@@ -55,14 +54,13 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             return _mapper.Map<GetMessageDto>(value);
         }
 
-        public async Task<bool> RemoveAsync(Guid id)
+        public async Task RemoveAsync(Guid id)
         {
             var value = await _meesageRepository.GetSingleAsync(x => x.Id == id, true);
             try
             {
                 _meesageRepository.Remove(value);
                 await _meesageRepository.SaveChangeAsync();
-                return true;
             }
             catch (Exception)
             {
@@ -70,14 +68,13 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             }
         }
 
-        public async Task<bool> UpdateAsync(UpdateMessageDto updateMessageDto)
+        public async Task UpdateAsync(UpdateMessageDto updateMessageDto)
         {
             var value = await _meesageRepository.GetSingleAsync(x => x.Id == updateMessageDto.Id);
             try
             {
                 _meesageRepository.Update(_mapper.Map(updateMessageDto, value));
                 await _meesageRepository.SaveChangeAsync();
-                return true;
             }
             catch (Exception)
             {

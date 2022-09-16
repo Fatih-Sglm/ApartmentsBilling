@@ -45,7 +45,7 @@
                                 <td scope="row">Ödenmedi</td>
                             }
                             @{
-                                var lastDays = (@item.LastPaymentDate - @DateTime.Now).ToString(@"dd\.hh\:mm");
+                                var lastDays = (DateTime.Parse(@item.LastPaymentDate) - @DateTime.Now).ToString(@"dd\.hh\:mm");
                             }
                             <td scope="row">@lastDays</td>
                             <td scope="row">@item.Price</td>

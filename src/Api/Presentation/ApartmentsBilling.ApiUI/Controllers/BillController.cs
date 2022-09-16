@@ -1,8 +1,10 @@
-﻿using ApartmentsBilling.BussinessLayer.Configuration.Filter.FilterAttirbute;
+﻿using ApartmentsBilling.BussinessLayer.Configuration.Authorize;
+using ApartmentsBilling.BussinessLayer.Configuration.Filter.FilterAttirbute;
 using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
 using ApartmentsBilling.Common.Dtos.BillsDto;
 using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.Entity.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -15,36 +17,35 @@ namespace ApartmentsBilling.ApiUI.Controllers
     public class BillController : CustomBaseController
     {
         private readonly IBillService _billService;
-        public BillController(IBillService billService)
+        private readonly IAuthHorize _authHorize;
+        public BillController(IBillService billService, IAuthHorize authHorize)
         {
             _billService = billService;
+            _authHorize = authHorize;
         }
 
         [HttpPost]
         [Permission(UserRole.Admin)]
         public async Task<IActionResult> CreateAsync(List<CreateBillDto> createBillDtos)
         {
-            var value = await _billService.AddRangeAsync(createBillDtos);
-            if (value)
-                return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Veri Başarıyla eklendi!"));
-            throw new Exception("Kayıt Başarısız Lütfen Tekrar Deneyiniz!");
+            await _billService.AddRangeAsync(createBillDtos);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Veri Başarıyla eklendi!"));
         }
 
         [HttpPut]
         [Permission(UserRole.Admin)]
         public async Task<IActionResult> UpdateAsync(UpdateBillDto updateBillDto)
         {
-            var value = await _billService.UpdateAsync(updateBillDto);
-            if (value)
-                return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Fatura Başarılı Bir Şekilde Güncellendi"));
-            else
-                throw new Exception("Güncelleme Başarısız LÜtfen Tekrar deneyin");
+            await _billService.UpdateAsync(updateBillDto);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Fatura Başarılı Bir Şekilde Güncellendi"));
+
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetList()
         {
-            if (!IsAuthorize())
-                return CreatActionResult(CustomResponseDto<List<BillDto>>.SuccesWithData(await _billService.GetListWithInclude(x => x.Flat.User.Id == Guid.Parse(User().Id), true, false, x => x.OrderByDescending(x => x.CreatedDate), x => x.BillType, x => x.Flat, x => x.Flat.User)));
+            if (!_authHorize.IsAuthorize())
+                return CreatActionResult(CustomResponseDto<List<BillDto>>.SuccesWithData(await _billService.GetListWithInclude(x => x.Flat.User.Id == Guid.Parse(_authHorize.User().Id), true, false, x => x.OrderByDescending(x => x.CreatedDate), x => x.BillType, x => x.Flat, x => x.Flat.User)));
             return CreatActionResult(CustomResponseDto<List<BillDto>>.SuccesWithData(await _billService.GetListWithInclude(null, true, false, x => x.OrderByDescending(x => x.CreatedDate), x => x.BillType, x => x.Flat, x => x.Flat.User)));
         }
 
@@ -58,11 +59,8 @@ namespace ApartmentsBilling.ApiUI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSingleAsync(Guid id)
         {
-            var v = await _billService.GetSingleAsync(x => x.Id == id, true, false);
-            return CreatActionResult(CustomResponseDto<BillDto>.SuccesWithData(v));
+            return CreatActionResult(CustomResponseDto<BillDto>.SuccesWithData(await _billService.GetSingleAsync(x => x.Id == id, true, false)));
         }
-
-
 
         [HttpDelete("{id}")]
         [Permission(UserRole.Admin)]
@@ -70,7 +68,6 @@ namespace ApartmentsBilling.ApiUI.Controllers
         {
             await _billService.RemoveAsync(id);
             return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Fatura Başarıyla Silindi"));
-
         }
     }
 }
