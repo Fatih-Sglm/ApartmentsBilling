@@ -34,6 +34,8 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
         {
             var HasUser = await _userRepo.GetSingleForAddUser(x => x.Email == userDto.Email);
             if (HasUser) throw new ClientSideException("Bu Mail İle Daha Önce Kayıt Olunmuş");
+            if (_userRepo.GetAll().Any(x => x.FlatId == userDto.FlatId))
+                throw new ClientSideException("Bu Daire Başkası Üzerine Kayıtlı");
             var pass = Guid.NewGuid().ToString("d").Substring(1, 6);
             PaswordHash.CreatePasswordHash(pass, out byte[] passwordHash, out byte[] passwordSalt);
             var user = _mapper.Map<User>(userDto);
@@ -42,29 +44,24 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };
-            if (!await _userRepo.GetSingleForAddUser(x => x.FlatId == userDto.FlatId))
+            try
             {
-                try
+                await _userRepo.AddAsync(user);
+                if (!isAdmin)
                 {
-                    await _userRepo.AddAsync(user);
-                    if (!isAdmin)
-                    {
-                        var value = await _flatRepo.GetSingleAsync(x => x.Id == userDto.FlatId, true);
-                        value.IsEmpty = false;
-                        _flatRepo.Update(value);
-                    }
-                    _jobs.FireAndForget(user.Email, pass);
-                    await _userRepo.SaveChangeAsync();
-                    return true;
+                    var value = await _flatRepo.GetSingleAsync(x => x.Id == userDto.FlatId, true);
+                    value.IsEmpty = false;
+                    _flatRepo.Update(value);
+                }
+                _jobs.FireAndForget(user.Email, pass);
+                await _userRepo.SaveChangeAsync();
+                return true;
 
-                }
-                catch (Exception)
-                {
-                    throw new Exception("Kullanıcı " + CustomErrorMessage.InsertErrorMessage);
-                }
             }
-            else
-                throw new ClientSideException("Bu Daire Başkası Üzerine Kayıtlı");
+            catch (Exception)
+            {
+                throw new Exception("Kullanıcı " + CustomErrorMessage.InsertErrorMessage);
+            }
         }
 
         public async Task<List<GetUserDto>> GetListWithInclude(Expression<Func<User, bool>> predicate, bool checkstatus = false, bool tracking = true, Func<IQueryable<User>, IOrderedQueryable<User>> orderBy = null, params Expression<Func<User, object>>[] includes)
@@ -94,7 +91,7 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 await _userRepo.SaveChangeAsync();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new Exception("Kullanıcı " + CustomErrorMessage.DeleteErrorMessage);
             }
@@ -112,7 +109,6 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             catch (Exception)
             {
                 throw new Exception("Kullanıcı " + CustomErrorMessage.UpdatetErrorMessage);
-
             }
         }
     }

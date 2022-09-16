@@ -3,6 +3,7 @@ using ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces;
 using ApartmentsBilling.Common.Dtos.BillsDto;
 using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.Entity.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,7 @@ namespace ApartmentsBilling.ApiUI.Controllers
                 throw new Exception("Güncelleme Başarısız LÜtfen Tekrar deneyin");
         }
         [HttpGet]
+        [Authorize]
         public async Task<IActionResult> GetList()
         {
             if (!IsAuthorize())

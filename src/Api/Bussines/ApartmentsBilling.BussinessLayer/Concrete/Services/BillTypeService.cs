@@ -53,7 +53,8 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
         }
         public List<GetBillTypeDto> GetAll(Func<IQueryable<BillType>, IOrderedQueryable<BillType>> orderBy = null, bool checkstatus = false, bool tracking = true)
         {
-            var value = _mapper.Map<List<GetBillTypeDto>>(_billTypeRepository.GetAll(orderBy, checkstatus, tracking));
+            var billtype = _billTypeRepository.GetAll(orderBy, checkstatus, tracking);
+            var value = _mapper.Map<List<GetBillTypeDto>>(billtype);
             return value;
         }
         public async Task<GetBillTypeDto> GetSingleAsync(Expression<Func<BillType, bool>> expression, bool checkstatus = false, bool tracking = true)

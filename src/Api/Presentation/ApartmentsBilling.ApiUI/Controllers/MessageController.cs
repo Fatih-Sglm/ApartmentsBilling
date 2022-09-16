@@ -30,7 +30,6 @@ namespace ApartmentsBilling.ApiUI.Controllers
             await _messageService.AddAsync(createMessageDto);
             return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Mesaj Gönerildi"));
         }
-
         [HttpPut]
         public async Task<IActionResult> UpdateAsync(UpdateMessageDto updateMessageDto)
         {
