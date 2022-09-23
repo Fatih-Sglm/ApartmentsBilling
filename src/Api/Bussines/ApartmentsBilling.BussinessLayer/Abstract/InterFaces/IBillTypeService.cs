@@ -14,7 +14,7 @@ namespace ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces
         Task AddRangeAsync(List<CreateBillTypeDto> createBillTypeDtos);
         Task UpdateAsync(UpdateBillTypeDto updateBillTypeDto);
         Task RemoveAsync(Guid id);
-        List<GetBillTypeDto> GetAll(Func<IQueryable<BillType>, IOrderedQueryable<BillType>> orderBy = null, bool checkstatus = false, bool tracking = true);
+        Task<List<GetBillTypeDto>> GetAll(Expression<Func<BillType, bool>> predicate = null, Func<IQueryable<BillType>, IOrderedQueryable<BillType>> orderBy = null, bool checkstatus = false, bool tracking = true);
         Task<GetBillTypeDto> GetSingleAsync(Expression<Func<BillType, bool>> expression, bool checkstatus = false, bool tracking = true);
     }
 }

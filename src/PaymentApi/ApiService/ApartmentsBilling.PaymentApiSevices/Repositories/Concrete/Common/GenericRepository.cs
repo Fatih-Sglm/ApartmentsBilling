@@ -1,5 +1,6 @@
 ﻿using ApartmentsBilling.PaymentApiSevices.DBSettings;
 using ApartmentsBilling.PaymentApiSevices.Entities.Common;
+using ApartmentsBilling.PaymentApiSevices.Exceptions;
 using ApartmentsBilling.PaymentApiSevices.Repositories.Common;
 using MongoDB.Driver;
 using System;
@@ -34,7 +35,14 @@ namespace ApartmentsBilling.PaymentApiSevices.Repositories.Concrete.Common
 
         public async Task DeleteAsync(string id)
         {
-            await Collection.FindOneAndDeleteAsync(x => x.Id == id);
+            try
+            {
+                await Collection.FindOneAndDeleteAsync(x => x.Id == id);
+            }
+            catch (Exception)
+            {
+                throw new NotFoundException("Fiş Bulunamadı");
+            }
         }
 
         public async Task<T> Get(Expression<Func<T, bool>> expression)

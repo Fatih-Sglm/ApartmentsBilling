@@ -20,11 +20,11 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="5.7.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Hangfire" Version="1.7.30" />
+	  <PackageReference Include="Hangfire" Version="1.7.31" />
 	  <ProjectReference Include="..\..\..\Projections\ApartmentsBilling.Cache\ApartmentsBilling.Cache.csproj" />
     <ProjectReference Include="..\..\Bussines\ApartmentsBilling.BussinessLayer\ApartmentsBilling.BussinessLayer.csproj" />
   </ItemGroup>

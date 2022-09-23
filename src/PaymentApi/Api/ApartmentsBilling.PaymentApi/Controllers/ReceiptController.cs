@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 
 namespace ApartmentsBilling.PaymentApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ReceiptController : ControllerBase
+    public class ReceiptController : CustomBaseController
     {
         private readonly IReceiptService _receiptService;
 
@@ -24,10 +22,9 @@ namespace ApartmentsBilling.PaymentApi.Controllers
             return Ok();
         }
         [HttpGet("{userId?}")]
-        public IActionResult GetList(string userId)
+        public async Task<IActionResult> GetList([FromRoute] string userId = null)
         {
-
-            return Ok();
+            return Ok(await _receiptService.GetAllReceipt(userId));
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetSingle(string id)

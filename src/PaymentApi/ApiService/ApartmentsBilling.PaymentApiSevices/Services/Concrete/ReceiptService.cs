@@ -38,8 +38,10 @@ namespace ApartmentsBilling.PaymentApiSevices.Services.Concrete
             await _repository.CreateAsync(receipt);
         }
 
-        public Task<List<GetReceiptDto>> GetAllReceipt()
+        public Task<List<GetReceiptDto>> GetAllReceipt(string userId)
         {
+            if (userId != null)
+                return Task.FromResult(_mapper.Map<List<GetReceiptDto>>(_repository.GetAll(x => x.UserId == userId)));
             return Task.FromResult(_mapper.Map<List<GetReceiptDto>>(_repository.GetAll()));
         }
 

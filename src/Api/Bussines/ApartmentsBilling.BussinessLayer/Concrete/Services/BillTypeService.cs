@@ -49,9 +49,9 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 throw new Exception("Fatura Tipleri " + CustomErrorMessage.InsertErrorMessage);
             }
         }
-        public List<GetBillTypeDto> GetAll(Func<IQueryable<BillType>, IOrderedQueryable<BillType>> orderBy = null, bool checkstatus = false, bool tracking = true)
+        public async Task<List<GetBillTypeDto>> GetAll(Expression<Func<BillType, bool>> predicate = null, Func<IQueryable<BillType>, IOrderedQueryable<BillType>> orderBy = null, bool checkstatus = false, bool tracking = true)
         {
-            var billtype = _billTypeRepository.GetAll(orderBy, checkstatus, tracking);
+            var billtype = await _billTypeRepository.GetAll(null, orderBy, checkstatus, tracking);
             var value = _mapper.Map<List<GetBillTypeDto>>(billtype);
             return value;
         }
@@ -68,7 +68,7 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 _billTypeRepository.Remove(value);
                 await _billTypeRepository.SaveChangeAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw new Exception("Fatura Tipi " + CustomErrorMessage.DeleteErrorMessage);
             }

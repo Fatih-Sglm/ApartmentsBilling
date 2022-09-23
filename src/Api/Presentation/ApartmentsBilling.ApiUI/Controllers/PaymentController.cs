@@ -33,25 +33,17 @@ namespace ApartmentsBilling.ApiUI.Controllers
 
 
 
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> GetSingleAsync(string id)
-        //{
-        //    var response = await client.GetFromJsonAsync<GetReceiptDto>(client.BaseAddress + $"Receipt/{id}");
-        //    if (response != null)
-        //        return Ok(response);
-        //    else
-        //        return BadRequest();
-        //}
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetSingleAsync(string id)
+        {
+            return CreatActionResult(CustomResponseDto<GetReceiptDto>.SuccesWithData(await _paymentService.GetSingleAsync(id)));
+        }
 
-        //[HttpDelete("{id}")]
-        //public async Task<IActionResult> RemoveAsync(string id)
-        //{
-        //    var response = await client.DeleteAsync(client.BaseAddress + $"Receipt/{id}");
-
-        //    if (response.IsSuccessStatusCode)
-        //        return Ok("Fiş Silindi");
-        //    else
-        //        return BadRequest();
-        //}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> RemoveAsync(string id)
+        {
+            await _paymentService.RemoveAsync(id);
+            return CreatActionResult(CustomResponseDto<NoContent>.SuccesWithOutData("Fiş Silindi"));
+        }
     }
 }

@@ -1,3 +1,4 @@
+using ApartmentsBilling.PaymentApi.Filters;
 using ApartmentsBilling.PaymentApiSevices.DBSettings;
 using ApartmentsBilling.PaymentApiSevices.Mapper;
 using ApartmentsBilling.PaymentApiSevices.Repositories.Common;
@@ -38,9 +39,14 @@ namespace ApartmentsBilling.PaymentApi
             services.AddScoped<IReceiptService, ReceiptService>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.Configure<DbSettings>(Configuration.GetSection("MongoDbSettings"));
-            services.AddControllers();
+            services.AddControllers(opt =>
+            {
+                opt.Filters.Add<ExceptionFilter>();
+            });
             services.AddSwaggerGen(c =>
             {
+                c.OperationFilter<Filters.ReApplyOptionalRouteParameterOperationFilter>();
+                c.EnableAnnotations();
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApartmentsBilling.PaymentApi", Version = "v1" });
             });
         }

@@ -40,10 +40,10 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Services
             {
                 var user = await userRepository.GetSingleAsync(x => x.Id == changePasswordDto.Id, true);
                 var Dbuser = await userRepository.GetSingleWtihInclude(x => x.Id == user.Id, true, true, x => x.Password);
-                //if (!PaswordHash.VerifyPasswordHash(changePasswordDto.OldPassword, Dbuser.Password.PasswordHash, Dbuser.Password.PasswordSalt))
-                //{
-                //    throw new ClientSideException("Şİfreniz Hatalı");
-                //}
+                if (!PaswordHash.VerifyPasswordHash(changePasswordDto.OldPassword, Dbuser.Password.PasswordHash, Dbuser.Password.PasswordSalt))
+                {
+                    throw new ClientSideException("Şİfreniz Hatalı");
+                }
                 PaswordHash.CreatePasswordHash(changePasswordDto.NewPassword, out byte[] PasswordHash, out byte[] PasswordSalt);
                 Dbuser.Password.PasswordSalt = PasswordSalt;
                 Dbuser.Password.PasswordHash = PasswordHash;

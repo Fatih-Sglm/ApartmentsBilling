@@ -7,6 +7,7 @@ using ApartmentsBilling.Common.Dtos.UserDtos;
 using ApartmentsBilling.DataAccesLayer.Abstract.InterFaces;
 using ApartmentsBilling.Entity.Entities;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +33,10 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
 
         public async Task AddUserAsync(CreateUserDto userDto, bool isAdmin)
         {
-            var HasUser = await _userRepo.GetSingleForAddUser(x => x.Email == userDto.Email);
-            if (HasUser) throw new ClientSideException("Bu Mail İle Daha Önce Kayıt Olunmuş");
-            if (_userRepo.GetAll().Any(x => x.FlatId == userDto.FlatId))
+            var result = await _userRepo.GetAll().Result.ToListAsync();
+            if (result.Any(x => x.Email == userDto.Email))
+                throw new ClientSideException("Bu Mail İle Daha Önce Kayıt Olunmuş");
+            if (result.Any(x => x.FlatId == userDto.FlatId))
                 throw new ClientSideException("Bu Daire Başkası Üzerine Kayıtlı");
             var pass = Guid.NewGuid().ToString("d").Substring(1, 6);
             PaswordHash.CreatePasswordHash(pass, out byte[] passwordHash, out byte[] passwordSalt);
@@ -44,23 +46,28 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };
-            try
+            if (!await _userRepo.GetSingleForAddUser(x => x.FlatId == userDto.FlatId))
             {
-                await _userRepo.AddAsync(user);
-                if (!isAdmin)
+                try
                 {
-                    var value = await _flatRepo.GetSingleAsync(x => x.Id == userDto.FlatId, true);
-                    value.IsEmpty = false;
-                    _flatRepo.Update(value);
-                }
-                _jobs.FireAndForget(user.Email, pass);
-                await _userRepo.SaveChangeAsync();
+                    await _userRepo.AddAsync(user);
+                    if (!isAdmin)
+                    {
+                        var value = await _flatRepo.GetSingleAsync(x => x.Id == userDto.FlatId, true);
+                        value.IsEmpty = false;
+                        _flatRepo.Update(value);
+                    }
+                    _jobs.FireAndForget(user.Email, pass);
+                    await _userRepo.SaveChangeAsync();
 
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Kullanıcı " + CustomErrorMessage.InsertErrorMessage);
+                }
             }
-            catch (Exception)
-            {
-                throw new Exception("Kullanıcı " + CustomErrorMessage.InsertErrorMessage);
-            }
+            else
+                throw new ClientSideException("Bu Daire Başkası Üzerine Kayıtlı");
         }
 
         public async Task<List<GetUserDto>> GetListWithInclude(Expression<Func<User, bool>> predicate, bool checkstatus = false, bool tracking = true, Func<IQueryable<User>, IOrderedQueryable<User>> orderBy = null, params Expression<Func<User, object>>[] includes)

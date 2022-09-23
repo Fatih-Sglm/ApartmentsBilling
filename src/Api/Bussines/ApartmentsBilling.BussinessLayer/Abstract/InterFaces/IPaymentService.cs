@@ -8,5 +8,7 @@ namespace ApartmentsBilling.BussinessLayer.Abstract.InterFaces
     {
         Task CreatePayment(BillPaymentDto billPaymentDto);
         Task<List<GetReceiptDto>> GetListAsync();
+        Task<GetReceiptDto> GetSingleAsync(string id);
+        Task RemoveAsync(string id);
     }
 }

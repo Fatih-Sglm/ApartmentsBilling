@@ -14,7 +14,7 @@ namespace ApartmentsBilling.DataAccesLayer.Abstract
         bool Update(T entity);
         bool Remove(T entity);
         bool RemoveRange(IEnumerable<T> entities);
-        IQueryable<T> GetAll(Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, bool checkstatus = false, bool tracking = true);
+        Task<IQueryable<T>> GetAll(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, bool checkstatus = false, bool tracking = true);
         Task<List<T>> GetListWithInclude(Expression<Func<T, bool>> predicate, bool checkstatus = false, bool tracking = true, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, params Expression<Func<T, object>>[] includes);
 
         Task<T> GetSingleAsync(Expression<Func<T, bool>> expression, bool checkstatus = false, bool tracking = true);

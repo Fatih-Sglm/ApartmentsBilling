@@ -35,16 +35,16 @@ namespace ApartmentsBilling.ApiUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetListAsync()
+        public async Task<IActionResult> GetListAsync()
         {
-            var value = _billTypeService.GetAll(x => x.OrderByDescending(x => x.CreatedDate), true, false);
+            var value = await _billTypeService.GetAll(null, x => x.OrderByDescending(x => x.CreatedDate), true, false);
             return CreatActionResult(CustomResponseDto<List<GetBillTypeDto>>.SuccesWithData(value));
         }
 
         [HttpGet("Edit")]
-        public IActionResult GetListForEditAsync()
+        public async Task<IActionResult> GetListForEditAsync()
         {
-            var value = _billTypeService.GetAll(x => x.OrderByDescending(x => x.CreatedDate), false, false);
+            var value = await _billTypeService.GetAll(null, x => x.OrderByDescending(x => x.CreatedDate), false, false);
             return CreatActionResult(CustomResponseDto<List<GetBillTypeDto>>.SuccesWithData(value));
         }
 

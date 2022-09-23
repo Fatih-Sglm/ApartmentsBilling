@@ -40,9 +40,9 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 {
                     await _apartRepo.GetSingleAsync(x => x.Id == entity.ApartmentId, true);
                     var billtype = await _billTypeRepository.GetSingleAsync(x => x.Id == entity.BilltypeId, true, false);
-                    var flats = await _flatRepository.GetListWithInclude(x => x.ApartmentId == entity.ApartmentId, true);
+                    var flats = await _flatRepository.GetListWithInclude(x => x.ApartmentId == entity.ApartmentId, true, includes: x => x.User);
 
-                    foreach (var item in flats)
+                    foreach (var item in flats.Where(x => x.User != null))
                     {
                         Bill b = new()
                         {
