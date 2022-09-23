@@ -1,5 +1,9 @@
 ﻿using ApartmentsBilling.BussinessLayer.Configuration.LogFilters;
 using ApartmentsBilling.Common.Dtos.CustomDto;
+<<<<<<<<< Temporary merge branch 1
+using Microsoft.AspNetCore.Http;
+=========
+>>>>>>>>> Temporary merge branch 2
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApartmentsBilling.ApiUI.Controllers

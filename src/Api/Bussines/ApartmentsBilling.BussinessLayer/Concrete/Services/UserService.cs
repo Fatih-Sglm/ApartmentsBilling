@@ -46,19 +46,21 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };
-            if (!await _userRepo.GetSingleForAddUser(x => x.FlatId == userDto.FlatId))
+            try
             {
-                try
+                await _userRepo.AddAsync(user);
+                if (!isAdmin)
                 {
-                    await _userRepo.AddAsync(user);
-                    if (!isAdmin)
-                    {
-                        var value = await _flatRepo.GetSingleAsync(x => x.Id == userDto.FlatId, true);
-                        value.IsEmpty = false;
-                        _flatRepo.Update(value);
-                    }
-                    _jobs.FireAndForget(user.Email, pass);
-                    await _userRepo.SaveChangeAsync();
+                    var value = await _flatRepo.GetSingleAsync(x => x.Id == userDto.FlatId, true);
+                    value.IsEmpty = false;
+                    _flatRepo.Update(value);
+                }
+                _jobs.FireAndForget(user.Email, pass);
+                await _userRepo.SaveChangeAsync();
+<<<<<<<<< Temporary merge branch 1
+                return true;
+=========
+>>>>>>>>> Temporary merge branch 2
 
                 }
                 catch (Exception)
