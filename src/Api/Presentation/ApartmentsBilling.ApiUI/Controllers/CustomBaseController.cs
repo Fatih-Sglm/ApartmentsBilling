@@ -1,5 +1,7 @@
 ﻿using ApartmentsBilling.BussinessLayer.Configuration.LogFilters;
 using ApartmentsBilling.Common.Dtos.CustomDto;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApartmentsBilling.ApiUI.Controllers

@@ -44,23 +44,29 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt
             };
-            try
+            if (!await _userRepo.GetSingleForAddUser(x => x.FlatId == userDto.FlatId))
             {
-                await _userRepo.AddAsync(user);
-                if (!isAdmin)
+                try
                 {
-                    var value = await _flatRepo.GetSingleAsync(x => x.Id == userDto.FlatId, true);
-                    value.IsEmpty = false;
-                    _flatRepo.Update(value);
-                }
-                _jobs.FireAndForget(user.Email, pass);
-                await _userRepo.SaveChangeAsync();
+                    await _userRepo.AddAsync(user);
+                    if (!isAdmin)
+                    {
+                        var value = await _flatRepo.GetSingleAsync(x => x.Id == userDto.FlatId, true);
+                        value.IsEmpty = false;
+                        _flatRepo.Update(value);
+                    }
+                    _jobs.FireAndForget(user.Email, pass);
+                    await _userRepo.SaveChangeAsync();
+                    return true;
 
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Kullanıcı " + CustomErrorMessage.InsertErrorMessage);
+                }
             }
-            catch (Exception)
-            {
-                throw new Exception("Kullanıcı " + CustomErrorMessage.InsertErrorMessage);
-            }
+            else
+                throw new ClientSideException("Bu Daire Başkası Üzerine Kayıtlı");
         }
 
         public async Task<List<GetUserDto>> GetListWithInclude(Expression<Func<User, bool>> predicate, bool checkstatus = false, bool tracking = true, Func<IQueryable<User>, IOrderedQueryable<User>> orderBy = null, params Expression<Func<User, object>>[] includes)
