@@ -11,7 +11,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
-    <PackageReference Include="Hangfire" Version="1.7.30" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.17">
@@ -24,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-	  <PackageReference Include="Hangfire" Version="1.7.31" />
 	  <ProjectReference Include="..\..\..\Projections\ApartmentsBilling.Cache\ApartmentsBilling.Cache.csproj" />
     <ProjectReference Include="..\..\Bussines\ApartmentsBilling.BussinessLayer\ApartmentsBilling.BussinessLayer.csproj" />
   </ItemGroup>

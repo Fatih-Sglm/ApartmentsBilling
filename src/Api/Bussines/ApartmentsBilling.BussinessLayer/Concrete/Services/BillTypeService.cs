@@ -68,7 +68,7 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 _billTypeRepository.Remove(value);
                 await _billTypeRepository.SaveChangeAsync();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw new Exception("Fatura Tipi " + CustomErrorMessage.DeleteErrorMessage);
             }
