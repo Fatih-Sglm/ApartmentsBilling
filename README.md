@@ -1,7 +1,7 @@
 # ApartmentsBilling
 
 
-//Bu Proje Bootcamp süresince geliştirilmiştir.Süre ile yarıştığımızdan Ötürü Projedenin kendisinde Değişşiklik yapmak istemedim. Refactoring işlemlerini farklı bir branch üzerinde geliştirmekteyim
+Bu Proje Bootcamp süresince geliştirilmiştir.Süre ile yarıştığımızdan Ötürü Projedenin kendisinde Değişşiklik yapmak istemedim. Refactoring işlemlerini farklı bir branch üzerinde geliştirmekteyim
 Merhabalar Sizlere Kısaca Projeyi Açıklamak İstiyorum;
 
 Şuan Sadece APi tarafı çalışmakta,CLient Ksımı için hala uğraşıyorum!
