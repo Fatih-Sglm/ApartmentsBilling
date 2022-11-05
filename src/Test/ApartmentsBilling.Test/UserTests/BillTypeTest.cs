@@ -32,9 +32,8 @@ namespace ApartmentsBilling.Test.UserTests
             var billtypeservice = new BillTypeService(billtyperepository.Object, _mapper);
 
             CreateBillTypeDto createBillTypeDto = new() { Name = "Doğal Gaz" };
-            var response = await billtypeservice.AddAsync(createBillTypeDto);
+            await billtypeservice.AddAsync(createBillTypeDto);
 
-            response.Should().BeTrue();
         }
 
         [Fact]
@@ -55,12 +54,11 @@ namespace ApartmentsBilling.Test.UserTests
                 Id = Guid.Parse("02ea102d-ae4a-4c7d-ba9d-08da7de4dd6e"),
                 Name = "Doğal Gaz"
             };
-            var response = await billtypeservice.UpdateAsync(updateBillTypeDto);
+            await billtypeservice.UpdateAsync(updateBillTypeDto);
 
             var validator = new UpdateBillTypeDtoValidation();
             ValidationResult result = validator.Validate(updateBillTypeDto);
             result.IsValid.Should().BeTrue();
-            response.Should().BeTrue();
         }
 
         [Fact]

@@ -1,56 +1,42 @@
 ﻿using ApartmentsBilling.Common.Dtos.PaymentDto;
-using ApartmentsBilling.PaymentApiSevices.Entities;
-using ApartmentsBilling.PaymentApiSevices.Features.Abstract;
-using AutoMapper;
+using ApartmentsBilling.PaymentApiSevices.Services.Concrete;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ApartmentsBilling.PaymentApi.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ReceiptController : ControllerBase
+    public class ReceiptController : CustomBaseController
     {
-        private readonly IReceiptService _paymentService;
-        private readonly IMapper _mapper;
-        public ReceiptController(IReceiptService paymentService, IMapper mapper)
+        private readonly IReceiptService _receiptService;
+
+        public ReceiptController(IReceiptService receiptService)
         {
-            _paymentService = paymentService;
-            _mapper = mapper;
+            _receiptService = receiptService;
         }
+
         [HttpPost]
         public async Task<IActionResult> Payment(PaymentDto paymentDto)
         {
-            Random random = new();
             if (paymentDto.BillPaymentDto == null || !ModelState.IsValid) return BadRequest();
-            var v = _mapper.Map<Receipt>(paymentDto.CreateBillPaymentDto);
-            v.PaymentNumber = random.Next(111111, 999999);
-            if (await _paymentService.CreateAsync(v))
-                return Ok();
-            return BadRequest();
+            await _receiptService.CreatePayment(paymentDto);
+            return Ok();
         }
-        [HttpGet]
-        public IActionResult GetList()
+        [HttpGet("{userId?}")]
+        public async Task<IActionResult> GetList([FromRoute] string userId = null)
         {
-            return Ok(_mapper.Map<List<GetReceiptDto>>(_paymentService.GetAll()));
+            return Ok(await _receiptService.GetAllReceipt(userId));
         }
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByIdAsync(string id)
+        public async Task<IActionResult> GetSingle(string id)
         {
-            if (id == null) return BadRequest();
-            if (await _paymentService.GetById(id) == null) return NoContent();
-            return Ok(_mapper.Map<GetReceiptDto>(await _paymentService.GetById(id)));
+            return Ok(await _receiptService.GetSingleReceipt(id));
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(string id)
         {
-            if (id == null) return BadRequest();
-            if (await _paymentService.GetById(id) == null) return NoContent();
-            await _paymentService.DeleteAsync(id);
-            return NoContent();
+            await _receiptService.Remove(id);
+            return Ok();
         }
     }
 }

@@ -81,6 +81,7 @@ namespace ApartmentsBilling.ApiUI
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApartmentsBilling.ApiUI v1"));
+
             }
 
             //app.UseExceptionHandler(c => c.Run(async context =>

@@ -1,4 +1,4 @@
-﻿namespace ApartmentsBilling.BussinessLayer.Features.Abstract.InterFaces
+﻿namespace ApartmentsBilling.BussinessLayer.Abstract.InterFaces
 {
     public interface IApartmentService
     {

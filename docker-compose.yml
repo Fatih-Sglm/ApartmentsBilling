@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  apartmentsbilling.apiui:
+    image: ${DOCKER_REGISTRY-}apartmentsbillingapiui
+    build:
+      context: .
+      dockerfile: src/Api/Presentation/ApartmentsBilling.ApiUI/Dockerfile

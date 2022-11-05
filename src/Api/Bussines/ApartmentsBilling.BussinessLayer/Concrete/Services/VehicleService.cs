@@ -26,7 +26,7 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             _userRepository = userRepository;
         }
 
-        public async Task<bool> AddAsync(CreateVehicleDto createVehicleDto)
+        public async Task AddAsync(CreateVehicleDto createVehicleDto)
         {
             try
             {
@@ -34,7 +34,6 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 var vehicle = _mapper.Map<Vehicle>(createVehicleDto);
                 await _vehicleRepo.AddAsync(vehicle);
                 await _vehicleRepo.SaveChangeAsync();
-                return true;
             }
             catch (Exception ex)
             {
@@ -54,14 +53,13 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             return _mapper.Map<GetVehicleDto>(vehicle);
         }
 
-        public async Task<bool> RemoveAsync(Guid id)
+        public async Task RemoveAsync(Guid id)
         {
             try
             {
                 var vehicle = await _vehicleRepo.GetSingleAsync(x => x.Id == id, true);
                 _vehicleRepo.Remove(vehicle);
                 await _vehicleRepo.SaveChangeAsync();
-                return true;
             }
             catch (Exception ex)
             {
@@ -70,15 +68,14 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
             }
         }
 
-        public async Task<bool> UpdateAsync(UpdateVehicleDto updateVehicleDto)
+        public async Task UpdateAsync(UpdateVehicleDto updateVehicleDto)
         {
+            var vehicle = await _vehicleRepo.GetSingleAsync(x => x.Id == updateVehicleDto.Id, true);
             try
             {
-                var vehicle = await _vehicleRepo.GetSingleAsync(x => x.Id == updateVehicleDto.Id, true);
                 _mapper.Map(updateVehicleDto, vehicle);
                 _vehicleRepo.Update(vehicle);
                 await _vehicleRepo.SaveChangeAsync();
-                return true;
             }
             catch (Exception ex)
             {

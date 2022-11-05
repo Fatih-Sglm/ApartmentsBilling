@@ -1,4 +1,5 @@
-﻿using ApartmentsBilling.BussinessLayer.Mapper;
+﻿using ApartmentsBilling.BussinessLayer.Configuration.Authorize;
+using ApartmentsBilling.BussinessLayer.Mapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,7 @@ namespace ApartmentsBilling.BussinessLayer
             //services.AddScoped<IApartmentService, ApartmanServices>();
             //services.AddScoped<IVehicleService, VehicleService>();
             //services.AddScoped<IMessageService, MeesageService>();
+            services.AddScoped<IAuthHorize, AuthHorize>();
             var tokenOptions = configuration.GetSection("TokenOptions").Get<Configuration.Auth.TokenOption>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

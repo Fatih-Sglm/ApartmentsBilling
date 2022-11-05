@@ -4,20 +4,14 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace ApartmentsBilling.PaymentApiSevices.Features.Abstract.common
+namespace ApartmentsBilling.PaymentApiSevices.Repositories.Common
 {
-    public interface IGenericService<T> where T : BaseEntity
+    public interface IGenericRepository<T> where T : BaseEntity
     {
         Task<bool> CreateAsync(T entity);
-        Task<bool> UpdateAsync(T entity);
-
         Task DeleteAsync(string id);
-
         Task<T> GetById(string id);
-
         Task<T> Get(Expression<Func<T, bool>> expression);
         IEnumerable<T> GetAll(Expression<Func<T, bool>> expression = null);
-
-
     }
 }

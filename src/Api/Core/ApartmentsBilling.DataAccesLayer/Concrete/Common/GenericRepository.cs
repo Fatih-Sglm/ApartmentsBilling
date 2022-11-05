@@ -40,6 +40,7 @@ namespace ApartmentsBilling.DataAccesLayer.Features.Concrete.Common
         public bool Update(T entity)
         {
             EntityEntry<T> entityEntry = Table.Update(entity);
+
             return entityEntry.State == EntityState.Modified;
         }
         #endregion
@@ -57,9 +58,12 @@ namespace ApartmentsBilling.DataAccesLayer.Features.Concrete.Common
         }
         #endregion
         #region GetList
-        public IQueryable<T> GetAll(Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, bool checkstatus = false, bool tracking = true)
+        public async Task<IQueryable<T>> GetAll(Expression<Func<T, bool>> predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, bool checkstatus = false, bool tracking = true)
         {
             var query = Table.AsNoTracking();
+
+            if (predicate != null)
+                query = query.Where(predicate);
             if (checkstatus)
                 return query.Where(x => x.Status == true).AsQueryable();
 
@@ -69,7 +73,7 @@ namespace ApartmentsBilling.DataAccesLayer.Features.Concrete.Common
             }
             if (!tracking)
                 query = query.AsNoTracking();
-            return query;
+            return await Task.FromResult(query);
         }
 
         public async Task<List<T>> GetListWithInclude(Expression<Func<T, bool>> predicate, bool checkstatus = false, bool tracking = true, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, params Expression<Func<T, object>>[] includes)
@@ -150,11 +154,6 @@ namespace ApartmentsBilling.DataAccesLayer.Features.Concrete.Common
         }
         #endregion
         #region OtherFunction
-
-        public IQueryable<T> AsQueryable()
-        {
-            return Table.AsQueryable();
-        }
         public async Task SaveChangeAsync()
         {
             await _context.SaveChangesAsync();

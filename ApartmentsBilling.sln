@@ -47,7 +47,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{A7D31336-E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApartmentsBilling.Test", "src\Test\ApartmentsBilling.Test\ApartmentsBilling.Test.csproj", "{B641C3FF-1CE5-475B-8B46-10D9A785343B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApartmentsBilling.WebApp", "src\Client\ApartmentsBilling.WebApp\ApartmentsBilling.WebApp.csproj", "{50F1D068-33BB-426E-85B1-1EB73C725EAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApartmentsBilling.WebApp", "src\Client\ApartmentsBilling.WebApp\ApartmentsBilling.WebApp.csproj", "{50F1D068-33BB-426E-85B1-1EB73C725EAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

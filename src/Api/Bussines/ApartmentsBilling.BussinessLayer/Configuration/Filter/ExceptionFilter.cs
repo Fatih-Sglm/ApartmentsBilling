@@ -14,7 +14,9 @@ namespace ApartmentsBilling.BussinessLayer.Configuration.Filter
         {
             var logger = context.HttpContext.RequestServices.GetService<MssqlLog>();
             var response = context.Exception.Message;
-            var errors = JsonSerializer.Serialize(CustomResponseDto<NoContent>.Fail(response));
+            JsonSerializerOptions jso = new JsonSerializerOptions();
+            jso.Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping;
+            var errors = JsonSerializer.Serialize(CustomResponseDto<NoContent>.Fail(response), jso);
             var ExeptionResult = context.Exception switch
             {
                 ClientSideException => new BadRequestObjectResult(errors),
