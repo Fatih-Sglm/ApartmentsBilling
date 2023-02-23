@@ -30,7 +30,7 @@ namespace ApartmentsBilling.PaymentApiSevices.Services.Concrete
                 PaymentMethod = "pm_card_visa",
             };
             var service = new PaymentIntentService();
-            service.Create(options);
+            var result = service.Create(options);
 
             Random random = new();
             Receipt receipt = _mapper.Map<Receipt>(paymentDto.CreateBillPaymentDto);

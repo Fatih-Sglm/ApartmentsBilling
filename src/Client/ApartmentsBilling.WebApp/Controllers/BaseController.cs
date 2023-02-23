@@ -1,6 +1,7 @@
 ﻿
 using ApartmentsBilling.Common.Dtos.CustomDto;
 using ApartmentsBilling.Common.Dtos.SystemDto;
+using ApartmentsBilling.WebApp.Constant;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,7 +18,7 @@ namespace ApartmentsBilling.WebApp.Controllers
 {
     public class BaseController : Controller
     {
-        protected readonly Uri _baseAdress = new("https://localhost:5001/api/");
+        private readonly Uri _baseAdress = new("https://localhost:5001/api/");
         protected readonly HttpClient _client;
 
         public BaseController()
@@ -49,11 +50,11 @@ namespace ApartmentsBilling.WebApp.Controllers
         protected bool IsAuthentic()
         {
 
-            if (HttpContext.Session.GetString("Authorization") == null || HttpContext.Session.GetString("Authorization") == string.Empty)
+            if (HttpContext.Session.GetString(HttpCosntant.Authorization) == null || HttpContext.Session.GetString(HttpCosntant.Authorization) == string.Empty)
             {
                 return false;
             }
-            _client.DefaultRequestHeaders.Add("Authorization", "Bearer " + HttpContext.Session.GetString("Authorization").ToString());
+            _client.DefaultRequestHeaders.Add(HttpCosntant.Authorization, "Bearer " + HttpContext.Session.GetString(HttpCosntant.Authorization).ToString());
             return true;
         }
         protected void SetHttpContext(CustomResponseDto<TokenDto> body)

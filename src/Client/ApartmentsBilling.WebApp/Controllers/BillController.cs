@@ -22,7 +22,7 @@ namespace ApartmentsBilling.WebApp.Controllers
         public async Task<IActionResult> ListBillAsync()
         {
             IsAuthentic();
-            var response = await _client.GetAsync(_client.BaseAddress + "Bill");
+            var response = await _client.GetAsync("Bill");
             if (response.IsSuccessStatusCode)
             {
                 var bill = await response.Content.ReadFromJsonAsync<CustomResponseDto<List<BillDto>>>();
