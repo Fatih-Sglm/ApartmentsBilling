@@ -64,6 +64,7 @@ namespace ApartmentsBilling.BussinessLayer.Features.Concrete.Repositories
                 throw new Exception("Fatura" + CustomErrorMessage.InsertErrorMessage + "\n" + ex.Message);
             }
         }
+
         public async Task<List<BillDto>> GetListWithInclude(Expression<Func<Bill, bool>> predicate, bool checkstatus = false, bool tracking = true, Func<IQueryable<Bill>, IOrderedQueryable<Bill>> orderBy = null, params Expression<Func<Bill, object>>[] includes)
         {
             return _mapper.Map<List<BillDto>>(await _billRepository.GetListWithInclude(predicate, checkstatus, tracking, orderBy, includes));

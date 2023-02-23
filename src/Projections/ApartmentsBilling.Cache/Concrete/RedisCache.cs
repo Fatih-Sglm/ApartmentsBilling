@@ -7,67 +7,58 @@ namespace ApartmentsBilling.Cache.Concrete
     public class RedisCache : IRedisService
     {
         private readonly RedisEndpoint _redisEndpoint;
+        private readonly RedisClient _redisClient;
 
         public RedisCache(RedisEndpoint redisEndpoint)
         {
 
             _redisEndpoint = redisEndpoint;
+            _redisClient = new RedisClient(_redisEndpoint);
         }
         public T Get<T>(string key)
         {
 
-            using (var redisClient = new RedisClient(_redisEndpoint))
-            {
-                return redisClient.Get<T>(key);
-            }
+            return _redisClient.Get<T>(key);
         }
 
         public object Get(string key)
         {
-            using (var redisClient = new RedisClient(_redisEndpoint))
-            {
-                return redisClient.Get(key);
-            }
+
+            return _redisClient.Get(key);
+
         }
 
         public void Add(string key, object data, int duration)
         {
-            using (var redisClient = new RedisClient(_redisEndpoint))
-            {
-                redisClient.Set(key, data, TimeSpan.FromMinutes(duration));
-            }
+
+            _redisClient.Set(key, data, TimeSpan.FromMinutes(duration));
+
         }
 
         public void Add(string key, object data)
         {
-            using (var redisClient = new RedisClient(_redisEndpoint))
-            {
-                redisClient.Set(key, data);
-            }
+
+            _redisClient.Set(key, data);
+
         }
 
         public bool IsAdd(string key)
         {
-            using (var redisClient = new RedisClient(_redisEndpoint))
-            {
-                return redisClient.ContainsKey(key);
-            }
+
+            return _redisClient.ContainsKey(key);
+
         }
 
         public void Remove(string key)
         {
-            using (var redisClient = new RedisClient(_redisEndpoint))
-            {
-                redisClient.Remove(key);
-            }
+
+            _redisClient.Remove(key);
+
         }
 
         public void RemoveByPattern(string pattern)
         {
-            using (var redisClient = new RedisClient(_redisEndpoint))
-            {
-                redisClient.RemoveByPattern(pattern);
-            }
+            _redisClient.RemoveByPattern(pattern);
         }
     }
 }

@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>db3aef78-03c4-459b-b135-fd0f0254e5be</ProjectGuid>
+    <ProjectGuid>b51e176d-8030-43c6-a56c-365e5e2a4ab9</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>apartmentsbilling.apiui</DockerServiceName>

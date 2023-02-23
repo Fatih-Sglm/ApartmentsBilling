@@ -29,7 +29,7 @@ namespace ApartmentsBilling.Cache.Configuration
                 };
             });
 
-            services.AddSingleton<RedisEndpoint>(opt =>
+            services.AddSingleton(opt =>
             {
                 return new RedisEndpoint
                 {
@@ -39,8 +39,6 @@ namespace ApartmentsBilling.Cache.Configuration
                     Password = _redis.Password,
                 };
             });
-
-
         }
     }
 }
