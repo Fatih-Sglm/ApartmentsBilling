@@ -1,0 +1,1709 @@
+{
+	"info": {
+		"_postman_id": "eefde433-ab86-435b-8585-34e7cd6e04d4",
+		"name": "ApartmansBillingCollections",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20573272"
+	},
+	"item": [
+		{
+			"name": "AuthCollection",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"fullName\": \"Fatih SAĞLAM\",\r\n  \"email\": \"nivotay260@zfobo.com\",\r\n  \"idNumber\": \"11111111111\",\r\n  \"phoneNumber\": \"5555555555\",\r\n  \"apartmentName\": \"Sofa Evleri\",\r\n  \"whichBlock\": \"A\",\r\n  \"floorType\": \"2+1\",\r\n  \"floorLocation\": 5,\r\n  \"floorNumber\": 3,\r\n  \"isRented\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Auth/register",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"fullName\": \"Fatih SAĞLAM\",\r\n  \"email\": \"fatih61@gmail.com\",\r\n  \"idNumber\": \"11111111111\",\r\n  \"phoneNumber\": \"5555555555\",\r\n  \"apartmentName\": \"Sofa Evleri\",\r\n  \"whichBlock\": \"A\",\r\n  \"floorType\": \"2+1\",\r\n  \"floorLocation\": 5,\r\n  \"floorNumber\": 3,\r\n  \"isRented\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/Auth/register",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:34:20 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Kayıt Başarılı\",\n    \"errors\": null\n}"
+						},
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"fullName\": \"Fatih SAĞLAM\",\r\n  \"email\": \"nivotay260@zfobo.com\",\r\n  \"idNumber\": \"11111111111\",\r\n  \"phoneNumber\": \"5555555555\",\r\n  \"apartmentName\": \"Sofa Evleri\",\r\n  \"whichBlock\": \"A\",\r\n  \"floorType\": \"2+1\",\r\n  \"floorLocation\": 5,\r\n  \"floorNumber\": 3,\r\n  \"isRented\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/Auth/register",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:36:16 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Kayıt Başarılı\",\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"nivotay260@zfobo.com\",\r\n  \"password\": \"fdf6e7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"nivotay260@zfobo.com\",\r\n  \"password\": \"fdf6e7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/Auth/login",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:37:34 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjZkOGM1NDkzLTFjYTAtNGM4ZS1iNWE1LTA4ZGE3ZTNkMDU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Im5pdm90YXkyNjBAemZvYm8uY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiRmF0aWggU0HEnkxBTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjYwNTEzOTU0LCJpc3MiOiJ3d3cuQXBhcnRtZW50c0JpbGxpbmcuY29tIiwiYXVkIjoid3d3LkFwYXJ0bWVudHNCaWxsaW5nLmNvbSJ9.OW2on3rllHg_es3f57WRjqkdWucCXCs58ps-6kAiKR0\",\n        \"accessTokenExpiration\": 15\n    },\n    \"statusCode\": 0,\n    \"message\": null,\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "ChangePassword",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"dc4ba166-9973-43ae-b5a6-08da7e3d0554\",\r\n  \"oldPassword\": \"baba61\",\r\n  \"newPassword\": \"baba61:\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Auth",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Auth"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "ChangePassword",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"dc4ba166-9973-43ae-b5a6-08da7e3d0554\",\r\n  \"oldPassword\": \"baba61\",\r\n  \"newPassword\": \"baba61:\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/Auth",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Auth"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:16:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Şifreniz Başarılı Bir şekilde Değiştirildi\",\n    \"errors\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "BillTypeCollection",
+			"item": [
+				{
+					"name": "AddBillType",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Doğal Gaz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/BillType",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"BillType"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "AddBillType",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Doğal Gaz\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/BillType",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"BillType"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:43:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Fatura Tipi Ekleme Başarılı\",\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "UpdateBillType",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"a91aa1ff-5c29-4814-de2f-08da7e3df603\",\r\n  \"name\": \"Elektrik\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/BillType",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"BillType"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "UpdateBillType",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"a91aa1ff-5c29-4814-de2f-08da7e3df603\",\r\n  \"name\": \"Elektrik\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/BillType",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"BillType"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:45:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Ürün Güncelleme Başarılı\",\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "GetAllBillTYpe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/BillType",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"BillType"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GetAllBillTYpe",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/BillType",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"BillType"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:46:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"a91aa1ff-5c29-4814-de2f-08da7e3df603\",\n            \"name\": \"Elektrik\"\n        }\n    ],\n    \"statusCode\": 0,\n    \"message\": null,\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "GetBİllTypeById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/BillType/a91aa1ff-5c29-4814-de2f-08da7e3df603",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"BillType",
+								"a91aa1ff-5c29-4814-de2f-08da7e3df603"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "GetBİllTypeById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/BillType/a91aa1ff-5c29-4814-de2f-08da7e3df603",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"BillType",
+										"a91aa1ff-5c29-4814-de2f-08da7e3df603"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:47:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"a91aa1ff-5c29-4814-de2f-08da7e3df603\",\n        \"name\": \"Elektrik\"\n    },\n    \"statusCode\": 0,\n    \"message\": null,\n    \"errors\": null\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjZkOGM1NDkzLTFjYTAtNGM4ZS1iNWE1LTA4ZGE3ZTNkMDU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Im5pdm90YXkyNjBAemZvYm8uY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiRmF0aWggU0HEnkxBTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjYwNTEzOTU0LCJpc3MiOiJ3d3cuQXBhcnRtZW50c0JpbGxpbmcuY29tIiwiYXVkIjoid3d3LkFwYXJ0bWVudHNCaWxsaW5nLmNvbSJ9.OW2on3rllHg_es3f57WRjqkdWucCXCs58ps-6kAiKR0",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "BillCollection",
+			"item": [
+				{
+					"name": "CreateBill",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/Bill",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Bill"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CreateBill",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n  {\r\n    \"billtypeId\": \"a91aa1ff-5c29-4814-de2f-08da7e3df603\",\r\n    \"apartmentId\": \"26162486-8674-44a1-1c55-08da7e3d04ed\",\r\n    \"lastPaymentDate\": \"2022-08-15\",\r\n    \"totalPrice\": 350\r\n  }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/Bill",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Bill"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:50:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Veri Başarıyla eklendi!\",\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "UpdateBill",
+					"request": {
+						"method": "PUT",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "UpdateBill",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"1363d924-ab17-4020-b125-08da7e3f0d4a\",\r\n  \"price\": 220,\r\n  \"billTypeId\": \"a91aa1ff-5c29-4814-de2f-08da7e3df603\",\r\n  \"flatId\": \"8eba811b-75a9-4dda-f20e-08da7e3d04fc\",\r\n  \"lastPaymentDate\": \"2022-08-17\",\r\n  \"isPayment\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/Bill",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Bill"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:52:49 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Fatura Başarılı Bir Şekilde Güncellendi\",\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "GetBill",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "GetBill",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/Bill",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Bill"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:53:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"1363d924-ab17-4020-b125-08da7e3f0d4a\",\n            \"billOwner\": \"Fatih SAĞLAM\",\n            \"price\": 220,\n            \"billType\": \"Elektrik\",\n            \"floorNumber\": \"3\",\n            \"isPayment\": false,\n            \"lastPaymentDate\": \"2022-08-17T00:00:00\"\n        }\n    ],\n    \"statusCode\": 0,\n    \"message\": null,\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "GetBillById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "GetBillById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/Bill/1363d924-ab17-4020-b125-08da7e3f0d4a",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Bill",
+										"1363d924-ab17-4020-b125-08da7e3f0d4a"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:54:45 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"1363d924-ab17-4020-b125-08da7e3f0d4a\",\n        \"billOwner\": null,\n        \"price\": 220,\n        \"billType\": null,\n        \"floorNumber\": \"0\",\n        \"isPayment\": false,\n        \"lastPaymentDate\": \"2022-08-17T00:00:00\"\n    },\n    \"statusCode\": 0,\n    \"message\": null,\n    \"errors\": null\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjZkOGM1NDkzLTFjYTAtNGM4ZS1iNWE1LTA4ZGE3ZTNkMDU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Im5pdm90YXkyNjBAemZvYm8uY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiRmF0aWggU0HEnkxBTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjYwNTEzOTU0LCJpc3MiOiJ3d3cuQXBhcnRtZW50c0JpbGxpbmcuY29tIiwiYXVkIjoid3d3LkFwYXJ0bWVudHNCaWxsaW5nLmNvbSJ9.OW2on3rllHg_es3f57WRjqkdWucCXCs58ps-6kAiKR0",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "FlatCollection",
+			"item": [
+				{
+					"name": "CreateFlat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjZkOGM1NDkzLTFjYTAtNGM4ZS1iNWE1LTA4ZGE3ZTNkMDU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Im5pdm90YXkyNjBAemZvYm8uY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiRmF0aWggU0HEnkxBTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjYwNTEzOTU0LCJpc3MiOiJ3d3cuQXBhcnRtZW50c0JpbGxpbmcuY29tIiwiYXVkIjoid3d3LkFwYXJ0bWVudHNCaWxsaW5nLmNvbSJ9.OW2on3rllHg_es3f57WRjqkdWucCXCs58ps-6kAiKR0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"whichBlock\": \"A\",\r\n  \"floorType\": \"2+1\",\r\n  \"floorLocation\": 2,\r\n  \"floorNumber\": 4,\r\n  \"isRented\": true,\r\n  \"apartmentId\": \"26162486-8674-44a1-1c55-08da7e3d04ed\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Flat",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Flat"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CreateFlat",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"whichBlock\": \"A\",\r\n  \"floorType\": \"2+1\",\r\n  \"floorLocation\": 2,\r\n  \"floorNumber\": 4,\r\n  \"isRented\": true,\r\n  \"apartmentId\": \"26162486-8674-44a1-1c55-08da7e3d04ed\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/Flat",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Flat"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 21:58:25 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Daire Eklendi!\",\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "UpdateFlat",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjZkOGM1NDkzLTFjYTAtNGM4ZS1iNWE1LTA4ZGE3ZTNkMDU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Im5pdm90YXkyNjBAemZvYm8uY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiRmF0aWggU0HEnkxBTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjYwNTE1MTg2LCJpc3MiOiJ3d3cuQXBhcnRtZW50c0JpbGxpbmcuY29tIiwiYXVkIjoid3d3LkFwYXJ0bWVudHNCaWxsaW5nLmNvbSJ9.uaXQPNhhyqYoEwyQO1lWDeLwEQkcCePzReIHESd_Xps",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"98eeacff-f5e2-46f4-f20f-08da7e3d04fc\",\r\n  \"apartmentId\": \"26162486-8674-44a1-1c55-08da7e3d04ed\",\r\n  \"whichBlock\": \"A\",\r\n  \"isEmpty\": false,\r\n  \"floorType\": \"3+1\",\r\n  \"floorLocation\": 2,\r\n  \"floorNumber\": 5,\r\n  \"isRented\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Flat",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Flat"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "UpdateFlat",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"98eeacff-f5e2-46f4-f20f-08da7e3d04fc\",\r\n  \"apartmentId\": \"26162486-8674-44a1-1c55-08da7e3d04ed\",\r\n  \"whichBlock\": \"A\",\r\n  \"isEmpty\": false,\r\n  \"floorType\": \"3+1\",\r\n  \"floorLocation\": 2,\r\n  \"floorNumber\": 5,\r\n  \"isRented\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/Flat",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Flat"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:00:27 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Daire Güncelleme Başarılı\",\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "GetAllFlat",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "GetAllFlat",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/Flat",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Flat"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:01:03 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"8eba811b-75a9-4dda-f20e-08da7e3d04fc\",\n            \"tenant_name\": null,\n            \"whichBlock\": \"A\",\n            \"isEmpty\": false,\n            \"floorType\": \"2+1\",\n            \"floorLocation\": 5,\n            \"floorNumber\": 3,\n            \"isRented\": false\n        },\n        {\n            \"id\": \"98eeacff-f5e2-46f4-f20f-08da7e3d04fc\",\n            \"tenant_name\": null,\n            \"whichBlock\": \"A\",\n            \"isEmpty\": false,\n            \"floorType\": \"3+1\",\n            \"floorLocation\": 2,\n            \"floorNumber\": 5,\n            \"isRented\": false\n        }\n    ],\n    \"statusCode\": 0,\n    \"message\": null,\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "GetFlatById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "GetFlatById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/Flat/98eeacff-f5e2-46f4-f20f-08da7e3d04fc",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Flat",
+										"98eeacff-f5e2-46f4-f20f-08da7e3d04fc"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:01:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": \"98eeacff-f5e2-46f4-f20f-08da7e3d04fc\",\n        \"tenant_name\": null,\n        \"whichBlock\": \"A\",\n        \"isEmpty\": false,\n        \"floorType\": \"3+1\",\n        \"floorLocation\": 2,\n        \"floorNumber\": 5,\n        \"isRented\": false\n    },\n    \"statusCode\": 0,\n    \"message\": null,\n    \"errors\": null\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjZkOGM1NDkzLTFjYTAtNGM4ZS1iNWE1LTA4ZGE3ZTNkMDU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Im5pdm90YXkyNjBAemZvYm8uY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiRmF0aWggU0HEnkxBTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjYwNTEzOTU0LCJpc3MiOiJ3d3cuQXBhcnRtZW50c0JpbGxpbmcuY29tIiwiYXVkIjoid3d3LkFwYXJ0bWVudHNCaWxsaW5nLmNvbSJ9.OW2on3rllHg_es3f57WRjqkdWucCXCs58ps-6kAiKR0",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "PaymentCollection",
+			"item": [
+				{
+					"name": "PayBill",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"billId\": \"1363d924-ab17-4020-b125-08da7e3f0d4a\",\r\n  \"cardNumber\": \"44444444444444444\",\r\n  \"lastUseDate\": \"08/28\",\r\n  \"cv2\": 256\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/Payment",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"Payment"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "PayBill",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"billId\": \"1363d924-ab17-4020-b125-08da7e3f0d4a\",\r\n  \"cardNumber\": \"44444444444444444\",\r\n  \"lastUseDate\": \"08/28\",\r\n  \"cv2\": 256\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/Payment",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Payment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:04:58 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Ödeme Başarıyla gerçekleşti\",\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "GetPaymentBill",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "GetPaymentBill",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/Payment",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Payment"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:05:45 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"62f4ebf0a8492ae6ece62365\",\n            \"paymentNumber\": 964848,\n            \"fullName\": \"Mustafa Sağlam\",\n            \"billType\": \"Elektrik\",\n            \"userId\": \"a68e29b0-81fe-4774-9c9f-08da7b72f64c\",\n            \"paymentDate\": \"2022-08-11T11:45:40.291Z\",\n            \"total\": 175\n        },\n        {\n            \"id\": \"62f8f2c5db526747f6d55507\",\n            \"paymentNumber\": 706487,\n            \"fullName\": \"Fatih SAĞLAM\",\n            \"billType\": \"Elektrik\",\n            \"userId\": \"8ccb80c5-c957-4d09-b82f-08da7d915e62\",\n            \"paymentDate\": \"2022-08-14T13:04:05.294Z\",\n            \"total\": 125\n        },\n        {\n            \"id\": \"62f9718adc08382c73ee3862\",\n            \"paymentNumber\": 307722,\n            \"fullName\": \"Fatih SAĞLAM\",\n            \"billType\": \"Elektrik\",\n            \"userId\": \"6d8c5493-1ca0-4c8e-b5a5-08da7e3d0554\",\n            \"paymentDate\": \"2022-08-14T22:04:58.27Z\",\n            \"total\": 220\n        }\n    ],\n    \"statusCode\": 0,\n    \"message\": null,\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "GetPaymentById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "GetPaymentById",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/Payment/62f9718adc08382c73ee3862",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"Payment",
+										"62f9718adc08382c73ee3862"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:06:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"62f9718adc08382c73ee3862\",\n    \"paymentNumber\": 307722,\n    \"fullName\": \"Fatih SAĞLAM\",\n    \"billType\": \"Elektrik\",\n    \"userId\": \"6d8c5493-1ca0-4c8e-b5a5-08da7e3d0554\",\n    \"paymentDate\": \"2022-08-14T22:04:58.27Z\",\n    \"total\": 220\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "UserCollection",
+			"item": [
+				{
+					"name": "CreateUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"flatId\": \"98eeacff-f5e2-46f4-f20f-08da7e3d04fc\",\r\n  \"fullName\": \"Murat\",\r\n  \"email\": \"jokahof794@upshopt.com\",\r\n  \"idNumber\": \"22222222222\",\r\n  \"phoneNumber\": \"4444444444\",\r\n  \"role\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:5001/api/User",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"User"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "CreateUser",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"flatId\": \"98eeacff-f5e2-46f4-f20f-08da7e3d04fc\",\r\n  \"fullName\": \"Murat\",\r\n  \"email\": \"jokahof794@upshopt.com\",\r\n  \"idNumber\": \"22222222222\",\r\n  \"phoneNumber\": \"4444444444\",\r\n  \"role\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/User",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"User"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:09:33 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Kullanıcı Başarılı Bir şekilde Oluşturuldu\",\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:5001/api/User",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"api",
+								"User"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "UpdateUser",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"id\": \"dc4ba166-9973-43ae-b5a6-08da7e3d0554\",\r\n  \"flatId\": \"98eeacff-f5e2-46f4-f20f-08da7e3d04fc\",\r\n  \"fullName\": \"Mehmet\",\r\n  \"email\": \"jokahof794@upshopt.com\",\r\n  \"idNumber\": \"22222222222\",\r\n  \"phoneNumber\": \"4444444444\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://localhost:5001/api/User",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"User"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:11:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": null,\n    \"statusCode\": 0,\n    \"message\": \"Kullanıcı Başarılı Bir şekilde Güncelleştirildi\",\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "GetUsers",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "GetUsers",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/User",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"User"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:11:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"fullName\": \"Mehmet\",\n            \"email\": \"jokahof794@upshopt.com\",\n            \"idNumber\": \"22222222222\",\n            \"phoneNumber\": \"4444444444\",\n            \"floorNumber\": 5,\n            \"vehicleCount\": 0\n        },\n        {\n            \"fullName\": \"Fatih SAĞLAM\",\n            \"email\": \"nivotay260@zfobo.com\",\n            \"idNumber\": \"11111111111\",\n            \"phoneNumber\": \"5555555555\",\n            \"floorNumber\": 3,\n            \"vehicleCount\": 0\n        }\n    ],\n    \"statusCode\": 0,\n    \"message\": null,\n    \"errors\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "GetUserById",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": [
+						{
+							"name": "GetUsers",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://localhost:5001/api/User/dc4ba166-9973-43ae-b5a6-08da7e3d0554",
+									"protocol": "https",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"User",
+										"dc4ba166-9973-43ae-b5a6-08da7e3d0554"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 14 Aug 2022 22:12:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"fullName\": \"Mehmet\",\n        \"email\": \"jokahof794@upshopt.com\",\n        \"idNumber\": \"22222222222\",\n        \"phoneNumber\": \"4444444444\",\n        \"floorNumber\": 0,\n        \"vehicleCount\": 0\n    },\n    \"statusCode\": 0,\n    \"message\": null,\n    \"errors\": null\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjZkOGM1NDkzLTFjYTAtNGM4ZS1iNWE1LTA4ZGE3ZTNkMDU1NCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Im5pdm90YXkyNjBAemZvYm8uY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvZ2l2ZW5uYW1lIjoiRmF0aWggU0HEnkxBTSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluIiwiZXhwIjoxNjYwNTE1MTg2LCJpc3MiOiJ3d3cuQXBhcnRtZW50c0JpbGxpbmcuY29tIiwiYXVkIjoid3d3LkFwYXJ0bWVudHNCaWxsaW5nLmNvbSJ9.uaXQPNhhyqYoEwyQO1lWDeLwEQkcCePzReIHESd_Xps",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	]
+}
