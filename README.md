@@ -14,8 +14,6 @@ Oluşturduğumuz Apartmanın yöneticisi oluyoruz
 
 UYARI: Şifre sistem tarafından otomatik oluşup belirtmiş olduğunuz maile gelmektadir.
 Deneme için temp-mail kullanılablir
-Allta Örnek olarak verildiği Gibi
-![Screenshot_1](https://user-images.githubusercontent.com/92210948/184557058-4155e7b4-c1c6-4e84-85a1-4b6be4357436.png)
 Sonradan Şifrenizi değiştirebilirsiniz
 
 Sisteme kayıt olduktan sonra Kullanıcı eklemeden önce Daire eklemelisiniz.İsterseniz sizin dışında başka yönetici de ekleyebilirsiniz
